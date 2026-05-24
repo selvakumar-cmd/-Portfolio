@@ -19,4 +19,4 @@ Welcome to my professional portfolio! I am a **Python Full Stack Developer** spe
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=SELVAKUMAR-ANALYST&show_icons=true&theme=gold)
 
 ---
-Connect with me on [LinkedIn](https://linkedin.com/in/selvakumar077) 🚀
+Connect with me on [LinkedIn](https://www.linkedin.com/in/contact-selvakumar) 🚀

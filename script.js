@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalText = btn.innerHTML;
             
             // Endpoint using FormSubmit with the official email
-            const endpoint = "https://formsubmit.co/ajax/contact.s.selvakumar@gmail.com";
+            const endpoint = "https://formsubmit.co/ajax/selvakumarworkofficial@gmail.com";
 
             btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
             btn.disabled = true;
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'whoami': 'Selvakumar - Python Full Stack Developer. I build robust Django applications with clean backend architecture.',
             'skills': 'Python, Django, REST APIs, SQL, JavaScript, HTML/CSS, Git.',
             'projects': '1. Enterprise Complaint Management System<br>2. Vetsphere Pet Care Management<br>3. Zomato India Restaurant Analytics',
-            'contact': 'Email: contact.s.selvakumar@gmail.com<br>LinkedIn: https://www.linkedin.com/in/contact-selvakumar'
+            'contact': 'Email: selvakumarworkofficial@gmail.com<br>LinkedIn: https://www.linkedin.com/in/contact-selvakumar'
         };
 
         terminalInput.addEventListener('keydown', (e) => {

@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = contactForm.querySelector('button');
+            const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             
             btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
@@ -153,6 +153,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.disabled = false;
             }
         });
+
+        // --- WhatsApp Button Handler ---
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        if (whatsappBtn) {
+            whatsappBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('name')?.value.trim();
+                const email = document.getElementById('email')?.value.trim();
+                const message = document.getElementById('message')?.value.trim();
+
+                if (!name || !email || !message) {
+                    alert('Please fill in all fields (Name, Email, Message) before sending');
+                    return;
+                }
+
+                // Format message with visitor details
+                const whatsappMessage = `*New Contact from Portfolio*\n\n📝 Name: ${name}\n📧 Email: ${email}\n💬 Message: ${message}\n\n---\nHi Selva, I visited your portfolio website and would like to connect with you.`;
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const phoneNumber = '918838038576'; // Your WhatsApp number
+                
+                // Direct WhatsApp chat link
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+                window.open(whatsappURL, '_blank');
+            });
+        }
     }
 
     // --- 9. Typing Effect ---

@@ -1082,6 +1082,31 @@ a {
     margin-bottom: 20px;
 }
 
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.form-buttons .btn {
+    flex: 1;
+    min-width: 150px;
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
+    color: white;
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    flex: 1;
+    min-width: 150px;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+}
+
 .contact-form input, .contact-form textarea {
     width: 100%;
     padding: 15px 20px;
@@ -1196,6 +1221,14 @@ footer {
     
     .contact-form.simplified .form-row {
         grid-template-columns: 1fr;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .form-buttons .btn, .btn-whatsapp {
+        width: 100%;
     }
     
     .section-title h2 {

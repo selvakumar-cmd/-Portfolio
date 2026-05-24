@@ -132,14 +132,20 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = true;
 
             const formData = new FormData(contactForm);
+            const object = {};
+            formData.forEach((value, key) => {
+                object[key] = value;
+            });
+            const json = JSON.stringify(object);
 
             try {
                 const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: {
+                        'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: formData
+                    body: json
                 });
 
                 const result = await response.json();
@@ -151,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Oops! Something went wrong. Please try again.');
                 }
             } catch (error) {
+                console.error(error);
                 alert('Oops! There was a problem connecting to the server.');
             } finally {
                 btn.innerHTML = originalText;

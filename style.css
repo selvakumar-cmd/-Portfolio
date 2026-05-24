@@ -585,6 +585,7 @@ a {
 .about-info-box { grid-column: span 4; grid-row: span 3; }
 .edu-box-1 { grid-column: span 6; grid-row: span 2; }
 .edu-box-2 { grid-column: span 6; grid-row: span 2; }
+.cert-box { grid-column: span 6; grid-row: span 2; }
 
 .github-stats-box { grid-column: span 4; grid-row: span 2; background: rgba(36, 41, 47, 0.15); }
 
@@ -637,7 +638,7 @@ a {
 }
 
 @media (max-width: 992px) {
-    .about-text-box, .about-info-box, .edu-box-1, .edu-box-2, .github-stats-box {
+    .about-text-box, .about-info-box, .edu-box-1, .edu-box-2, .cert-box, .github-stats-box {
         grid-column: span 12;
     }
 }
@@ -661,15 +662,17 @@ a {
     display: inline-block;
 }
 
-/* Bento Grid Styles */
-.bento-icon {
-    font-size: 1.5rem;
-    color: var(--accent-primary);
-    margin-bottom: 20px;
-    background: rgba(99, 102, 241, 0.1);
-    width: 50px;
-    height: 50px;
-    display: flex;
+.cert-list ul {
+    list-style: disc inside;
+    margin: 15px 0 0;
+    padding-left: 18px;
+    color: var(--text-secondary);
+}
+
+.cert-list ul li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
     justify-content: center;
     align-items: center;
     border-radius: 14px;

@@ -692,17 +692,31 @@ a {
 }
 
 .pulse {
-    width: 8px;
-    height: 8px;
-    background: #4ade80;
+    width: 12px;
+    height: 12px;
+    background: #00ff00;
     border-radius: 50%;
-    animation: pulse-ring 2s infinite;
+    animation: blink-pulse 1s infinite;
+    display: inline-block;
+    box-shadow: 0 0 10px #00ff00;
 }
 
-@keyframes pulse-ring {
-    0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+@keyframes blink-pulse {
+    0% { 
+        opacity: 1;
+        box-shadow: 0 0 5px #00ff00, 0 0 15px #00ff00;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.6;
+        box-shadow: 0 0 10px #00ff00, 0 0 25px #00ff00;
+        transform: scale(1.2);
+    }
+    100% { 
+        opacity: 1;
+        box-shadow: 0 0 5px #00ff00, 0 0 15px #00ff00;
+        transform: scale(1);
+    }
 }
 
 .edu-card {

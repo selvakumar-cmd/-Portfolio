@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // For now, it's a placeholder for future enhancement.
 
 
-    // --- 8. Contact Form Handling (FormSubmit Integration) ---
+    // --- 8. Contact Form Handling (Netlify Forms Integration) ---
     const contactForm = document.getElementById('portfolio-contact');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -125,27 +125,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = contactForm.querySelector('button');
             const originalText = btn.innerHTML;
             
-            // Endpoint using FormSubmit with the official email
-            const endpoint = "https://formsubmit.co/ajax/selvakumarworkofficial@gmail.com";
-
             btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
             btn.disabled = true;
 
             const formData = new FormData(contactForm);
 
             try {
-                const response = await fetch(endpoint, {
+                const response = await fetch("/", {
                     method: 'POST',
                     headers: {
-                        'Accept': 'application/json'
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: formData
+                    body: new URLSearchParams(formData).toString()
                 });
 
-                const result = await response.json();
-
-                if (result.success === "true" || response.ok) {
-                    alert('Thanks! Your message has been sent to Selvakumar.');
+                if (response.ok) {
+                    alert('Thanks! Your message has been sent successfully.');
                     contactForm.reset();
                 } else {
                     alert('Oops! Something went wrong. Please try again.');

@@ -1,9 +1,9 @@
 /**
  * Portfolio Interactive Logic
  */
-
 document.addEventListener('DOMContentLoaded', () => {
-    
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // --- 0. Hacker Loader ---
     const loader = document.getElementById('loader');
     const progress = document.querySelector('.loader-progress');
@@ -13,22 +13,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let msgIdx = 0;
 
     if(loader) {
-        let width = 0;
-        const interval = setInterval(() => {
-            width += Math.random() * 25;
-            if (width >= 100) {
-                width = 100;
-                clearInterval(interval);
-                setTimeout(() => {
-                    loader.classList.add('fade-out');
-                }, 500);
-            }
-            progress.style.width = width + '%';
-            if(width > (msgIdx + 1) * 25 && msgIdx < messages.length - 1) {
-                msgIdx++;
-                loaderMsg.textContent = messages[msgIdx];
-            }
-        }, 150);
+        // If user prefers reduced motion, skip the cinematic loader animation.
+        if (prefersReducedMotion) {
+            progress.style.width = '100%';
+            loaderMsg.textContent = messages[messages.length - 1];
+            loader.classList.add('fade-out');
+        } else {
+            let width = 0;
+            const interval = setInterval(() => {
+                width += Math.random() * 25;
+                if (width >= 100) {
+                    width = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loader.classList.add('fade-out');
+                    }, 500);
+                }
+                progress.style.width = width + '%';
+                if(width > (msgIdx + 1) * 25 && msgIdx < messages.length - 1) {
+                    msgIdx++;
+                    loaderMsg.textContent = messages[msgIdx];
+                }
+            }, 150);
+        }
     }
     
 
@@ -52,15 +59,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. Reveal on Scroll ---
     const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, { threshold: 0.1 });
+    if (!prefersReducedMotion) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        // Show all immediately for reduced-motion users.
+        revealElements.forEach(el => el.classList.add('active'));
+    }
 
 
     // --- 5. Active Link Tracking ---
@@ -71,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let current = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
             if (pageYOffset >= (sectionTop - 200)) {
                 current = section.getAttribute('id');
             }
@@ -79,11 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
+            const href = link.getAttribute('href');
+            if (href === `#${current}`) {
                 link.classList.add('active');
             }
         });
     });
+
 
 
     // --- 6. Theme Toggle ---
@@ -187,47 +200,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorSpan = document.querySelector(".cursor-typing");
 
     if (typedTextSpan && cursorSpan) {
-        const textArray = ["Python Full Stack Developer", "Django Specialist", "Backend Engineer", "Problem Solver"];
-        const typingDelay = 100;
-        const erasingDelay = 50;
-        const newTextDelay = 2000; // Delay between current and next text
-        let textArrayIndex = 0;
-        let charIndex = 0;
+        if (prefersReducedMotion) {
+            typedTextSpan.textContent = "Python Full Stack Developer";
+            cursorSpan.classList.remove("typing");
+        } else {
+            const textArray = ["Python Full Stack Developer", "Django Specialist", "Backend Engineer", "Problem Solver"];
+            const typingDelay = 100;
+            const erasingDelay = 50;
+            const newTextDelay = 2000; // Delay between current and next text
+            let textArrayIndex = 0;
+            let charIndex = 0;
 
-        function type() {
-            if (charIndex < textArray[textArrayIndex].length) {
-                if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, typingDelay);
-            } 
-            else {
-                cursorSpan.classList.remove("typing");
-                setTimeout(erase, newTextDelay);
+            function type() {
+                if (charIndex < textArray[textArrayIndex].length) {
+                    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, typingDelay);
+                } 
+                else {
+                    cursorSpan.classList.remove("typing");
+                    setTimeout(erase, newTextDelay);
+                }
             }
-        }
 
-        function erase() {
-            if (charIndex > 0) {
-                if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
-                charIndex--;
-                setTimeout(erase, erasingDelay);
-            } 
-            else {
-                cursorSpan.classList.remove("typing");
-                textArrayIndex++;
-                if(textArrayIndex >= textArray.length) textArrayIndex = 0;
-                setTimeout(type, typingDelay + 1100);
+            function erase() {
+                if (charIndex > 0) {
+                    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+                    charIndex--;
+                    setTimeout(erase, erasingDelay);
+                } 
+                else {
+                    cursorSpan.classList.remove("typing");
+                    textArrayIndex++;
+                    if(textArrayIndex >= textArray.length) textArrayIndex = 0;
+                    setTimeout(type, typingDelay + 1100);
+                }
             }
-        }
 
-        if(textArray.length) setTimeout(type, newTextDelay + 250);
+            if(textArray.length) setTimeout(type, newTextDelay + 250);
+        }
     }
 
 
     // --- 10. Particles.js ---
-    if(window.particlesJS) {
+    if (!prefersReducedMotion && window.particlesJS) {
         particlesJS('particles-js', {
             "particles": {
                 "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -343,19 +361,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 13. Magnetic Buttons ---
+    // Premium feel, but avoid overhead for reduced-motion users and on small screens.
     const magneticBtns = document.querySelectorAll('.btn, .social-links-big a, .project-links a, .terminal-toggle-btn');
-    magneticBtns.forEach(btn => {
-        btn.classList.add('magnetic');
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+
+    if (!prefersReducedMotion && !isMobile) {
+        magneticBtns.forEach(btn => {
+            btn.classList.add('magnetic');
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+            });
         });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = `translate(0px, 0px)`;
-        });
-    });
+    }
+
+
 
 
     // --- 14. Scramble Text Effect ---
@@ -430,13 +455,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 15. Bento Glow ---
     const bentoItems = document.querySelectorAll('.bento-item');
-    bentoItems.forEach(item => {
-        item.addEventListener('mousemove', (e) => {
-            const rect = item.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            item.style.setProperty('--mouse-x', `${x}%`);
-            item.style.setProperty('--mouse-y', `${y}%`);
+    if (!prefersReducedMotion) {
+        bentoItems.forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const rect = item.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                item.style.setProperty('--mouse-x', `${x}%`);
+                item.style.setProperty('--mouse-y', `${y}%`);
+            });
         });
-    });
+    }
+    
 });

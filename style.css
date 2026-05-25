@@ -78,6 +78,42 @@
     background: var(--accent-gradient);
 }
 
+/* Dark Mode Base (explicit, ensures default dark even if class differs) */
+body.dark-mode {
+    --bg-dark: #000000;
+    background: 
+        linear-gradient(
+            135deg,
+            #000000 0%,
+            #0a0a0a 25%,
+            #050505 50%,
+            #0a0a0a 75%,
+            #000000 100%
+        ),
+        radial-gradient(
+            circle at 20% 50%,
+            rgba(212, 175, 55, 0.02) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(184, 134, 11, 0.015) 0%,
+            transparent 50%
+        );
+    background-size: 400% 400%, 100% 100%, 100% 100%;
+    animation: gradient-shift 25s ease infinite;
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease;
+    --bg-alt: #0a0a0a;
+    --text-primary: #fdfdfd;
+    --text-secondary: #a0a0a0;
+    --glass-bg: #0d0d0d;
+    --glass-border: #222222;
+    --glass-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
 /* Light Mode Overrides */
 body.light-mode {
     --bg-dark: #f8fafc;
@@ -121,6 +157,27 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-dark);
+    background: 
+        linear-gradient(
+            135deg,
+            #000000 0%,
+            #0a0a0a 25%,
+            #050505 50%,
+            #0a0a0a 75%,
+            #000000 100%
+        ),
+        radial-gradient(
+            circle at 20% 50%,
+            rgba(212, 175, 55, 0.02) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(184, 134, 11, 0.015) 0%,
+            transparent 50%
+        );
+    background-size: 400% 400%, 100% 100%, 100% 100%;
+    animation: gradient-shift 25s ease infinite;
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -321,6 +378,24 @@ a {
     33% { transform: translate(100px, 50px) scale(1.1); }
     66% { transform: translate(-50px, 100px) scale(0.9); }
     100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Grain Texture Overlay */
@@ -673,12 +748,9 @@ a {
     margin-bottom: 10px;
     line-height: 1.6;
 }
-    justify-content: center;
-    align-items: center;
-    border-radius: 14px;
-}
 
 .status-badge {
+
     background: rgba(34, 197, 94, 0.1);
     color: #4ade80;
     padding: 6px 16px;

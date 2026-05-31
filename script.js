@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             typedTextSpan.textContent = "Python Full Stack Developer";
             cursorSpan.classList.remove("typing");
         } else {
-            const textArray = ["Python Full Stack Developer", "Django Specialist", "Backend Engineer", "Problem Solver"];
+            const textArray = ["Python Full Stack Developer", "Data Analyst", "Software Developer Engineer", "Problem Solver"];
             const typingDelay = 100;
             const erasingDelay = 50;
             const newTextDelay = 2000; // Delay between current and next text

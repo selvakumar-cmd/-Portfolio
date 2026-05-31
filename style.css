@@ -490,23 +490,23 @@ a {
 
 
 .gradient-text {
-    color: #d4af37; /* Solid gold fallback */
-    background: linear-gradient(135deg, #f5d060 0%, #d4af37 40%, #b8860b 100%);
+    color: #FFD700; /* Bright solid gold fallback */
+    background: linear-gradient(135deg, #FFF8B0 0%, #FFD700 40%, #FFB300 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
 }
 
 .hero-content h3 {
     font-size: 2.2rem;
     margin-bottom: 20px;
-    color: #d4af37;
-    background: linear-gradient(135deg, #f5d060 0%, #d4af37 40%, #b8860b 100%);
+    color: #FFD700;
+    background: linear-gradient(135deg, #FFF8B0 0%, #FFD700 40%, #FFB300 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
     font-weight: 600;
 }
 

@@ -205,9 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
             cursorSpan.classList.remove("typing");
         } else {
             const textArray = ["Python Full Stack Developer", "Data Analyst", "Software Developer Engineer", "Problem Solver"];
-            const typingDelay = 100;
-            const erasingDelay = 50;
-            const newTextDelay = 2000; // Delay between current and next text
+            const typingDelay = 90;
+            const erasingDelay = 45;
+            const newTextDelay = 1500; // Pause after full word is typed
             let textArrayIndex = 0;
             let charIndex = 0;
 
@@ -235,11 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     cursorSpan.classList.remove("typing");
                     textArrayIndex++;
                     if(textArrayIndex >= textArray.length) textArrayIndex = 0;
-                    setTimeout(type, typingDelay + 1100);
+                    setTimeout(type, 600); // Fast next word start
                 }
             }
 
-            if(textArray.length) setTimeout(type, newTextDelay + 250);
+            if(textArray.length) setTimeout(type, 800); // Start sooner
         }
     }
 

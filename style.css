@@ -490,9 +490,12 @@ a {
 
 
 .gradient-text {
-    background: var(--accent-gradient);
+    color: #d4af37; /* Solid gold fallback */
+    background: linear-gradient(135deg, #f5d060 0%, #d4af37 40%, #b8860b 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
 }
 
 .hero-content h3 {

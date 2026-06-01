@@ -202,12 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!typedTextSpan || !cursorSpan) return;
 
-        if (prefersReducedMotion) {
-            typedTextSpan.textContent = "Python Full Stack Developer";
-            cursorSpan.classList.remove("typing");
-            return;
-        }
-
         const textArray = ["Python Full Stack Developer", "Data Analyst", "Software Developer Engineer", "Problem Solver"];
         const typingDelay = 80;
         const erasingDelay = 40;

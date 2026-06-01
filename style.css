@@ -497,12 +497,14 @@ a {
 .hero-content h3 {
     font-size: 2.2rem;
     margin-bottom: 20px;
-    color: #FFD700; /* Solid golden color */
+    color: #FFD700;
     background: none;
-    -webkit-text-fill-color: initial;
+    -webkit-text-fill-color: #FFD700;
     text-shadow: none;
     filter: none;
     font-weight: 600;
+    min-height: 2.8rem;
+    overflow: visible;
 }
 
 .hero-content p {
@@ -1455,6 +1457,7 @@ footer {
 
     .hero-content h3 {
         font-size: 1.5rem;
+        min-height: 2rem;
     }
 
     .hero-content h2 {
@@ -1468,12 +1471,12 @@ footer {
 
 /* Typing Effect */
 .typed-text {
-    color: var(--accent-primary);
+    color: #FFD700;
 }
 .cursor-typing {
     display: inline-block;
     width: 3px;
-    background-color: var(--accent-primary);
+    background-color: #FFD700;
     margin-left: 0.1rem;
     animation: blink 1s infinite;
 }
@@ -1481,11 +1484,11 @@ footer {
     animation: none;
 }
 @keyframes blink {
-    0%  { background-color: var(--accent-primary); }
-    49% { background-color: var(--accent-primary); }
+    0%  { background-color: #FFD700; }
+    49% { background-color: #FFD700; }
     50% { background-color: transparent; }
     99% { background-color: transparent; }
-    100%  { background-color: var(--accent-primary); }
+    100%  { background-color: #FFD700; }
 }
 
 /* Ultra-Premium Features */

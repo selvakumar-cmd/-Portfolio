@@ -196,52 +196,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 9. Typing Effect ---
-    const typedTextSpan = document.querySelector(".typed-text");
-    const cursorSpan = document.querySelector(".cursor-typing");
+    (function initTypingEffect() {
+        const typedTextSpan = document.querySelector(".typed-text");
+        const cursorSpan = document.querySelector(".cursor-typing");
 
-    if (typedTextSpan && cursorSpan) {
+        if (!typedTextSpan || !cursorSpan) return;
+
         if (prefersReducedMotion) {
             typedTextSpan.textContent = "Python Full Stack Developer";
             cursorSpan.classList.remove("typing");
-        } else {
-            const textArray = ["Python Full Stack Developer", "Data Analyst", "Software Developer Engineer", "Problem Solver"];
-            const typingDelay = 90;
-            const erasingDelay = 45;
-            const newTextDelay = 1500; // Pause after full word is typed
-            let textArrayIndex = 0;
-            let charIndex = 0;
-
-            function type() {
-                if (charIndex < textArray[textArrayIndex].length) {
-                    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-                    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(type, typingDelay);
-                } 
-                else {
-                    cursorSpan.classList.remove("typing");
-                    setTimeout(erase, newTextDelay);
-                }
-            }
-
-            function erase() {
-                if (charIndex > 0) {
-                    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-                    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
-                    charIndex--;
-                    setTimeout(erase, erasingDelay);
-                } 
-                else {
-                    cursorSpan.classList.remove("typing");
-                    textArrayIndex++;
-                    if(textArrayIndex >= textArray.length) textArrayIndex = 0;
-                    setTimeout(type, 600); // Fast next word start
-                }
-            }
-
-            if(textArray.length) setTimeout(type, 800); // Start sooner
+            return;
         }
-    }
+
+        const textArray = ["Python Full Stack Developer", "Data Analyst", "Software Developer Engineer", "Problem Solver"];
+        const typingDelay = 80;
+        const erasingDelay = 40;
+        const newTextDelay = 1400;
+        let textArrayIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                cursorSpan.classList.add("typing");
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                cursorSpan.classList.remove("typing");
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                cursorSpan.classList.add("typing");
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                cursorSpan.classList.remove("typing");
+                textArrayIndex = (textArrayIndex + 1) % textArray.length;
+                setTimeout(type, 500);
+            }
+        }
+
+        setTimeout(type, 600);
+    })();
 
 
     // --- 10. Particles.js ---

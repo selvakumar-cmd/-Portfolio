@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const commands = {
             'help': 'Available commands: <br>- <span class="cmd-highlight">whoami</span>: About me<br>- <span class="cmd-highlight">skills</span>: My expertise<br>- <span class="cmd-highlight">projects</span>: View my work<br>- <span class="cmd-highlight">contact</span>: Get in touch<br>- <span class="cmd-highlight">clear</span>: Clear terminal',
             'whoami': 'Selvakumar - Python Full Stack Developer. I build robust Django applications with clean backend architecture.',
-            'skills': 'Python, Django, REST APIs, SQL, JavaScript, HTML/CSS, Git.',
+            'skills': 'Python, Django, REST APIs, SQL (PostgreSQL/SQLite), JavaScript, Git/GitHub. Cloud/Deployment: Netlify, Vercel, Render, Streamlit Cloud.',
             'projects': '1. Enterprise Complaint Management System<br>2. Vetsphere Pet Care Management<br>3. Zomato India Restaurant Analytics',
             'contact': 'Email: contact.s.selvakumar@gmail.com<br>LinkedIn: https://www.linkedin.com/in/contact-selvakumar'
         };

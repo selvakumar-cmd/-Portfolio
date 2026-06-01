@@ -942,13 +942,13 @@ a {
 /* Skills */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .skill-category {
     background: var(--glass-bg);
-    padding: 40px;
+    padding: 25px;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
     transition: var(--transition);

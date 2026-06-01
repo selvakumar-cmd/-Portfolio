@@ -104,15 +104,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     const icon = themeToggle.querySelector('i');
+    let startLight = false;
 
     themeToggle.addEventListener('click', () => {
         body.classList.toggle('light-mode');
-        if (body.classList.contains('light-mode')) {
+        const isLight = body.classList.contains('light-mode');
+        if (isLight) {
             icon.classList.replace('fa-moon', 'fa-sun');
             localStorage.setItem('theme', 'light');
         } else {
             icon.classList.replace('fa-sun', 'fa-moon');
             localStorage.setItem('theme', 'dark');
+        }
+        
+        // Re-initialize particles with theme colors
+        if (typeof initParticles === 'function') {
+            initParticles(isLight);
         }
     });
 
@@ -120,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('theme') === 'light') {
         body.classList.add('light-mode');
         icon.classList.replace('fa-moon', 'fa-sun');
+        startLight = true;
     }
 
 
@@ -240,38 +248,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- 10. Particles.js ---
-    if (!prefersReducedMotion && window.particlesJS) {
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": ["#d4af37", "#b8860b"] },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.6, "random": true },
-                "size": { "value": 2, "random": true },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#d4af37",
-                    "opacity": 0.2,
-                    "width": 1
+    function initParticles(isLight) {
+        if (!prefersReducedMotion && window.particlesJS) {
+            // Light mode: darker bronze/gold so particles are visible on cream bg
+            // Dark mode: bright gold so particles glow on black bg
+            const pColor  = isLight ? ["#7a5c10", "#b8860b", "#5a4008"] : ["#d4af37", "#b8860b", "#f0d060"];
+            const lColor  = isLight ? "#7a5c10" : "#d4af37";
+            const pOpacity = isLight ? 0.75 : 0.6;
+            const lOpacity = isLight ? 0.35 : 0.2;
+            const speed    = isLight ? 1.5  : 2;
+
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": { "value": 90, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": pColor },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": pOpacity, "random": true },
+                    "size": { "value": 2.5, "random": true },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 140,
+                        "color": lColor,
+                        "opacity": lOpacity,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true, "speed": speed, "direction": "none",
+                        "random": true, "straight": false, "out_mode": "out", "bounce": false
+                    }
                 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "grab" },
-                    "onclick": { "enable": true, "mode": "push" },
-                    "resize": true
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": { "enable": true, "mode": "grab" },
+                        "onclick": { "enable": true, "mode": "push" },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                        "push": { "particles_nb": 4 }
+                    }
                 },
-                "modes": {
-                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
-                    "push": { "particles_nb": 4 }
-                }
-            },
-            "retina_detect": true
-        });
+                "retina_detect": true
+            });
+        }
     }
+
+    // Initialize on page load with saved theme
+    initParticles(startLight);
 
     // --- 11. Skills Radar Chart ---
     const ctx = document.getElementById('skillsRadar');

@@ -314,22 +314,35 @@ body.light-mode .image-wrapper:hover {
     box-shadow: 0 30px 60px rgba(184, 134, 11, 0.12), 0 0 0 1px var(--accent-primary), 0 0 25px var(--glow-color);
 }
 
-/* Light Mode — Blob backgrounds */
+/* Light Mode — Blob backgrounds (premium aurora) */
 body.light-mode .blob {
-    opacity: 0.22;
-    filter: blur(120px);
+    opacity: 0.35;
+    filter: blur(100px);
+    animation: move 20s infinite alternate, light-shimmer 6s ease-in-out infinite alternate;
 }
 
 body.light-mode .blob-1 {
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.22), transparent 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.45) 0%, rgba(184, 134, 11, 0.2) 50%, transparent 70%);
+    width: 700px;
+    height: 700px;
 }
 
 body.light-mode .blob-2 {
-    background: radial-gradient(circle, rgba(184, 134, 11, 0.18), transparent 70%);
+    background: radial-gradient(circle, rgba(184, 134, 11, 0.38) 0%, rgba(139, 105, 20, 0.18) 50%, transparent 70%);
+    width: 600px;
+    height: 600px;
 }
 
 body.light-mode .blob-3 {
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.14), transparent 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.1) 50%, transparent 70%);
+    width: 500px;
+    height: 500px;
+}
+
+@keyframes light-shimmer {
+    0%   { opacity: 0.28; filter: blur(100px) brightness(1);   }
+    50%  { opacity: 0.42; filter: blur(90px)  brightness(1.1); }
+    100% { opacity: 0.30; filter: blur(110px) brightness(0.95);}
 }
 
 /* Light Mode — Project overlay */

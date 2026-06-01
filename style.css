@@ -130,12 +130,189 @@ body.dark-mode {
 /* Light Mode Overrides */
 body.light-mode {
     --bg-dark: #f8fafc;
-    --bg-alt: #ffffff;
+    --bg-alt: #f1f5f9;
     --text-primary: #0f172a;
-    --text-secondary: #64748b;
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(0, 0, 0, 0.05);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    --text-secondary: #475569;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(15, 23, 42, 0.08);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+    --accent-primary: #b8860b;
+    --accent-secondary: #8b6914;
+    --glow-color: rgba(184, 134, 11, 0.12);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #ffffff 25%,
+            #f1f5f9 50%,
+            #ffffff 75%,
+            #f8fafc 100%
+        ),
+        radial-gradient(
+            circle at 20% 50%,
+            rgba(184, 134, 11, 0.04) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(212, 175, 55, 0.03) 0%,
+            transparent 50%
+        );
+    background-size: 400% 400%, 100% 100%, 100% 100%;
+    color: var(--text-primary);
+}
+
+/* Light Mode — Nav bar */
+body.light-mode #main-nav.scrolled {
+    background: rgba(248, 250, 252, 0.92);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+/* Light Mode — Logo & Links */
+body.light-mode .logo a {
+    color: var(--text-primary);
+}
+
+body.light-mode .nav-links a {
+    color: #475569;
+}
+
+body.light-mode .nav-links a:hover,
+body.light-mode .nav-links a.active {
+    color: #0f172a;
+}
+
+/* Light Mode — Hero text */
+body.light-mode .hero-content h2 {
+    color: var(--text-secondary);
+}
+
+body.light-mode .hero-content p {
+    color: #475569;
+}
+
+body.light-mode .gradient-text {
+    background: linear-gradient(135deg, #b8860b 0%, #8b6914 40%, #6b4f10 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .hero-content h3 {
+    color: #b8860b;
+    -webkit-text-fill-color: #b8860b;
+}
+
+body.light-mode .typed-text {
+    color: #b8860b;
+}
+
+body.light-mode .cursor-typing {
+    background-color: #b8860b;
+}
+
+/* Light Mode — Cards & Sections */
+body.light-mode .bento-item,
+body.light-mode .skill-category,
+body.light-mode .project-card,
+body.light-mode .achievement-card,
+body.light-mode .highlight-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .skill-tag {
+    background: #f1f5f9;
+    color: #334155;
+    border-color: rgba(15, 23, 42, 0.1);
+}
+
+body.light-mode .skill-tag:hover {
+    color: #b8860b;
+    border-color: #b8860b;
+}
+
+/* Light Mode — Section titles */
+body.light-mode .section-title h2 {
+    color: #0f172a;
+}
+
+body.light-mode .subtitle {
+    color: #b8860b;
+}
+
+/* Light Mode — Buttons */
+body.light-mode .btn-secondary {
+    border-color: rgba(15, 23, 42, 0.15);
+    color: #334155;
+}
+
+body.light-mode .btn-secondary:hover {
+    border-color: #b8860b;
+    color: #b8860b;
+}
+
+/* Light Mode — Footer */
+body.light-mode footer {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+/* Light Mode — Contact info */
+body.light-mode .info-item i {
+    color: #b8860b;
+}
+
+body.light-mode .contact-form {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+body.light-mode input,
+body.light-mode textarea {
+    background: #f8fafc;
+    color: #0f172a;
+    border-color: rgba(15, 23, 42, 0.1);
+}
+
+/* Light Mode — Image wrapper */
+body.light-mode .image-wrapper {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.08);
+}
+
+/* Light Mode — Blob backgrounds */
+body.light-mode .blob {
+    opacity: 0.04;
+}
+
+/* Light Mode — Project overlay */
+body.light-mode .project-tags span {
+    background: #f1f5f9;
+    color: #334155;
+    border-color: rgba(15, 23, 42, 0.08);
+}
+
+/* Light Mode — Scrollbar */
+body.light-mode ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+/* Light Mode — Theme toggle icon */
+body.light-mode #theme-toggle {
+    color: #475569;
+}
+
+body.light-mode #terminal-btn {
+    color: #475569;
+    border-color: rgba(15, 23, 42, 0.1);
+}
+
+/* Light Mode — Menu burger */
+body.light-mode .menu-btn__burger,
+body.light-mode .menu-btn__burger::before,
+body.light-mode .menu-btn__burger::after {
+    background: #334155;
 }
 
 /* Reset & Base Styles */

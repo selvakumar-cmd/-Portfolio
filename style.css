@@ -1259,6 +1259,68 @@ a {
     padding-top: 5px;
 }
 
+/* Featured Achievements */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.achievement-card {
+    background: var(--glass-bg);
+    padding: 30px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    text-align: center;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.achievement-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 175, 55, 0.1);
+}
+
+.achievement-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--accent-primary);
+    font-size: 1.6rem;
+    transition: var(--transition);
+}
+
+.achievement-card:hover .achievement-icon-wrapper {
+    background: var(--accent-gradient);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.achievement-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.achievement-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
 /* Simplified Form */
 .contact-form.simplified .form-row {
     display: grid;
@@ -1389,7 +1451,7 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    .skills-grid, .project-grid {
+    .skills-grid, .project-grid, .achievements-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -1404,13 +1466,13 @@ footer {
     }
 
     /* Avoid scroll-jank from hover transforms on touch devices */
-    .project-card:hover, .bento-item:hover, .skill-category:hover, .image-wrapper:hover {
+    .project-card:hover, .bento-item:hover, .skill-category:hover, .image-wrapper:hover, .achievement-card:hover {
         transform: none;
         box-shadow: none;
     }
 
     
-    .skills-grid, .project-grid, .highlights-container {
+    .skills-grid, .project-grid, .highlights-container, .achievements-grid {
         grid-template-columns: 1fr;
     }
 

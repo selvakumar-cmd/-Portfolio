@@ -2,7 +2,8 @@
  * Portfolio Interactive Logic
  */
 document.addEventListener('DOMContentLoaded', () => {
-    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Force prefersReducedMotion to false to guarantee background particles, loading, and scroll animations run on all devices (especially mobile with battery saver)
+    const prefersReducedMotion = false;
 
     // --- 0. Hacker Loader ---
     const loader = document.getElementById('loader');

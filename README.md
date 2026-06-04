@@ -1,6 +1,6 @@
 # Selvakumar S | Technomancy Portfolio 🧙‍♂️✨
 
-Welcome to my professional portfolio! I am a **Python Full Stack Developer** specializing in building robust backend systems with Django and crafting interactive, high-end user experiences.
+Welcome to my professional portfolio! I am a **Python Full Stack Developer** specializing in building robust Web Development systems with Django and crafting interactive, high-end user experiences.
 
 ## 🚀 Live Demo
 **Check it out here: 

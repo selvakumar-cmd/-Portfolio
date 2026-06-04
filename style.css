@@ -1701,6 +1701,26 @@ footer {
         display: none;
     }
 
+    /* Fix mobile button overflow */
+    .nav-extra {
+        gap: 8px;
+    }
+
+    #terminal-btn,
+    #theme-toggle {
+        font-size: 1rem;
+    }
+
+    .terminal-toggle-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+    }
+
+    .menu-btn {
+        margin-left: 8px;
+    }
+
     /* Avoid scroll-jank from hover transforms on touch devices */
     .project-card:hover, .bento-item:hover, .skill-category:hover, .image-wrapper:hover, .achievement-card:hover {
         transform: none;

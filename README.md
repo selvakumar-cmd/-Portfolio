@@ -4,7 +4,7 @@ Welcome to my professional portfolio! I am a **Python Full Stack Developer** spe
 
 ## 🚀 Live Demo
 **Check it out here: 
-https://selvakumar-tech.netlify.app **
+https://selvakumarweb.netlify.app/ **
 ## 🛠️ Tech Stack
 - **Frontend:** HTML5, CSS3 (Custom Glassmorphism), JavaScript (ES6+), React, Tailwind CSS
 - **Tools:** Git, GitHub, Netlify, VS Code

@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 response.innerHTML = "Python, Django, JavaScript, SQL, AWS, Docker, HTML/CSS, Git.";
                 break;
             case 'projects':
-                response.innerHTML = "1. AI Resume Builder<br>2. Support Ticket Automation<br>3. Zomato Data Analytics";
+                response.innerHTML = "1. AI Resume Builder<br>2. Support Ticket Automation<br>3. Zomato Data Analytics<br>4. Vetsphere Clinic Management";
                 break;
             case 'contact':
                 response.innerHTML = "Email: <a href='mailto:contact.s.selvakumar@gmail.com' style='color:var(--accent-primary)'>contact.s.selvakumar@gmail.com</a>";

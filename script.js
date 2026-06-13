@@ -130,7 +130,17 @@ document.addEventListener('DOMContentLoaded', () => {
         startLight = true;
     }
 
-
+    // --- Live Timezone Badge ---
+    function updateLiveTime() {
+        const timeElement = document.getElementById('live-time');
+        if (timeElement) {
+            const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const timeString = new Intl.DateTimeFormat('en-US', options).format(new Date());
+            timeElement.textContent = `IST ${timeString}`;
+        }
+    }
+    updateLiveTime();
+    setInterval(updateLiveTime, 1000);
     // --- 7. Mobile Menu (Simple implementation) ---
     const menuBtn = document.querySelector('.menu-btn');
     const navLinksList = document.querySelector('.nav-links');
@@ -485,5 +495,73 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    
+        // --- 13. GitHub Activity Calendar ---
+    if (typeof GitHubCalendar !== 'undefined') {
+        GitHubCalendar(".calendar", "selvakumar-cmd", {
+            responsive: true,
+            tooltips: true
+        });
+    }
+
+    // --- 14. Interactive Terminal Section ---
+    const termInput = document.getElementById('inline-terminal-input');
+    const termOutput = document.getElementById('inline-terminal-output');
+
+    if (termInput && termOutput) {
+        termInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const cmd = this.value.trim().toLowerCase();
+                if (cmd) {
+                    processTerminalCommand(cmd, termOutput);
+                }
+                this.value = '';
+            }
+        });
+    }
+
+    function processTerminalCommand(cmd, outputDiv) {
+        // Echo command
+        const cmdEcho = document.createElement('p');
+        cmdEcho.innerHTML = `<span class="prompt">selvakumar@cmd:~$</span> ${cmd}`;
+        outputDiv.appendChild(cmdEcho);
+
+        const response = document.createElement('p');
+        
+        switch(cmd) {
+            case 'help':
+                response.innerHTML = `Available commands: <br>
+                <span class="cmd-highlight">whoami</span> - Display my bio<br>
+                <span class="cmd-highlight">skills</span> - List core technical skills<br>
+                <span class="cmd-highlight">projects</span> - View my top projects<br>
+                <span class="cmd-highlight">contact</span> - Get my email<br>
+                <span class="cmd-highlight">clear</span> - Clear the terminal`;
+                break;
+            case 'whoami':
+                response.textContent = "Selvakumar S - Python Full Stack Developer specializing in Django and robust backend systems.";
+                break;
+            case 'skills':
+                response.innerHTML = "Python, Django, JavaScript, SQL, AWS, Docker, HTML/CSS, Git.";
+                break;
+            case 'projects':
+                response.innerHTML = "1. AI Resume Builder<br>2. Support Ticket Automation<br>3. Zomato Data Analytics";
+                break;
+            case 'contact':
+                response.innerHTML = "Email: <a href='mailto:contact.s.selvakumar@gmail.com' style='color:var(--accent-primary)'>contact.s.selvakumar@gmail.com</a>";
+                break;
+            case 'clear':
+                outputDiv.innerHTML = '';
+                return;
+            case 'sudo':
+                response.textContent = "Nice try, but you are not in the sudoers file. This incident will be reported. 🚨";
+                break;
+            default:
+                response.innerHTML = `Command not found: ${cmd}. Type <span class="cmd-highlight">help</span> for a list of commands.`;
+        }
+        
+        response.style.color = "var(--text-secondary)";
+        response.style.marginBottom = "15px";
+        outputDiv.appendChild(response);
+        outputDiv.scrollTop = outputDiv.scrollHeight;
+    }
+
 });

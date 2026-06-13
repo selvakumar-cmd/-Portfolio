@@ -38,6 +38,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- GitHub Calendar -->
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+    
     <!-- JSON-LD Schema Markup for SEO -->
     <script type="application/ld+json">
     {
@@ -153,6 +156,10 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-extra">
+                <div id="timezone-badge" class="timezone-badge">
+                    <span class="pulse-dot"></span>
+                    <span id="live-time">IST Loading...</span>
+                </div>
                 <button id="terminal-btn" class="terminal-toggle-btn" aria-label="Terminal Mode">
                     <i class="fas fa-terminal"></i>
                 </button>
@@ -545,6 +552,55 @@
         </div>
     </section>
 
+    <!-- GitHub Activity Section -->
+    <section id="github-activity" class="section">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Open Source</span>
+                <h2>GitHub Contributions</h2>
+                <div class="line"></div>
+            </div>
+            <div class="github-calendar-wrapper reveal">
+                <!-- GitHub Calendar will be injected here -->
+                <div class="calendar">
+                    <!-- Loading placeholder -->
+                    Loading GitHub data for @selvakumar-cmd...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Terminal Section -->
+    <section id="terminal-section" class="section">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Command Line Interface</span>
+                <h2>Interactive Terminal</h2>
+                <div class="line"></div>
+            </div>
+            <div class="terminal-container reveal">
+                <div class="terminal-window-inline">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="close-btn"></span>
+                            <span class="min-btn"></span>
+                            <span class="max-btn"></span>
+                        </div>
+                        <div class="terminal-title">selvakumar@cmd: ~</div>
+                    </div>
+                    <div class="terminal-body" id="inline-terminal-output">
+                        <p>Welcome to Selvakumar's Interactive Resume Terminal.</p>
+                        <p>Type <span class="cmd-highlight">help</span> to see available commands.</p>
+                    </div>
+                    <div class="terminal-input-line">
+                        <span class="prompt">selvakumar@cmd:~$</span>
+                        <input type="text" id="inline-terminal-input" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
@@ -636,6 +692,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
     <script src="script.js?v=1.2"></script>
 </body>
 </html>

@@ -1735,6 +1735,10 @@ footer {
         display: none;
     }
 
+    .timezone-badge {
+        display: none;
+    }
+
     /* Fix mobile button overflow */
     .nav-extra {
         gap: 8px;

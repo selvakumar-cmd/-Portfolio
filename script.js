@@ -506,16 +506,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 14. Interactive Terminal Section ---
     const termInput = document.getElementById('inline-terminal-input');
     const termOutput = document.getElementById('inline-terminal-output');
+    const termForm = document.getElementById('inline-terminal-form');
 
-    if (termInput && termOutput) {
-        termInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const cmd = this.value.trim().toLowerCase();
-                if (cmd) {
-                    processTerminalCommand(cmd, termOutput);
-                }
-                this.value = '';
+    if (termInput && termOutput && termForm) {
+        termForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const cmd = termInput.value.trim().toLowerCase();
+            if (cmd) {
+                processTerminalCommand(cmd, termOutput);
             }
+            termInput.value = '';
         });
     }
 

@@ -1254,7 +1254,6 @@ body.light-mode .timezone-badge {
 .skill-tag i {
     margin-right: 6px;
     font-size: 1.05rem;
-    color: var(--accent-primary);
 }
 
 .skill-tag:hover {

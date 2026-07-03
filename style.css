@@ -2103,25 +2103,26 @@ footer {
 
 /* 2. Skills Wrapper & Chart */
 .skills-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 40px;
-    align-items: center;
 }
 .skills-chart-container {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 20px;
-    height: 100%;
+    padding: 30px 36px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     box-shadow: var(--glass-shadow);
+    width: 100%;
+    box-sizing: border-box;
 }
 @media (max-width: 992px) {
     .skills-wrapper {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 }
 

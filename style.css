@@ -1011,7 +1011,13 @@ body.light-mode .timezone-badge {
 .edu-box-2 { grid-column: span 6; grid-row: span 2; }
 .cert-box { grid-column: span 6; grid-row: span 2; }
 
-.github-stats-box { grid-column: span 6; grid-row: span 2; background: rgba(36, 41, 47, 0.15); }
+.github-stats-box { grid-column: span 6; grid-row: span 2; background: rgba(36, 41, 47, 0.15); text-align: center; }
+
+.github-stats-box .gh-streak-img,
+.github-stats-box .gh-langs-img {
+    display: block;
+    margin: 0 auto;
+}
 
 .github-stats {
     margin-bottom: 20px;

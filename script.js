@@ -564,4 +564,51 @@ document.addEventListener('DOMContentLoaded', () => {
         outputDiv.scrollTop = outputDiv.scrollHeight;
     }
 
+    // --- 15. Animated Proficiency Bars ---
+    function animateProfBars() {
+        document.querySelectorAll('.prof-fill').forEach(bar => {
+            const targetWidth = bar.getAttribute('data-width');
+            bar.style.width = targetWidth + '%';
+        });
+    }
+
+    // Trigger on scroll using IntersectionObserver
+    const profSection = document.querySelector('.proficiency-bars');
+    if (profSection) {
+        const profObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateProfBars();
+                    profObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+        profObserver.observe(profSection);
+    }
+
+    // --- 16. GitHub Mini Stats via API ---
+    async function fetchGitHubStats() {
+        try {
+            const res = await fetch('https://api.github.com/users/selvakumar-cmd');
+            const data = await res.json();
+            const reposEl = document.getElementById('gh-repos');
+            const followersEl = document.getElementById('gh-followers');
+            if (reposEl) reposEl.textContent = data.public_repos ?? '--';
+            if (followersEl) followersEl.textContent = data.followers ?? '--';
+
+            // Fetch total stars across repos
+            const reposRes = await fetch('https://api.github.com/users/selvakumar-cmd/repos?per_page=100');
+            const repos = await reposRes.json();
+            const totalStars = Array.isArray(repos) ? repos.reduce((sum, r) => sum + r.stargazers_count, 0) : '--';
+            const starsEl = document.getElementById('gh-stars');
+            if (starsEl) starsEl.textContent = totalStars;
+        } catch (e) {
+            ['gh-repos', 'gh-stars', 'gh-followers'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = '--';
+            });
+        }
+    }
+    fetchGitHubStats();
+
 });

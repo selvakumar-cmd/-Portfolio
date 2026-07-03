@@ -255,11 +255,12 @@
                     <p>Professional certifications that strengthen your portfolio for MNC roles.</p>
                     <div class="cert-list">
                         <ul>
+                            <li>React.js Development – Camp Tech Institute</li>
+                            <li>Core Java – Tech Force Institute</li>
                             <li>Microsoft Excel Advanced Level – Microsoft & Naan Mudhalvan</li>
                             <li>Microsoft PowerPoint Advanced Level – Microsoft & Naan Mudhalvan</li>
                             <li>Microsoft Word Advanced Level – Microsoft & Naan Mudhalvan</li>
-                            <li>React.js Development – Camp Tech Institute</li>
-                            <li>Core Java – Tech Force Institute</li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -267,13 +268,49 @@
                 <!-- GitHub Stats Card -->
                 <div class="bento-item github-stats-box reveal">
                     <div class="bento-icon"><i class="fab fa-github"></i></div>
-                    <h3>Technical Contributions</h3>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px;">Maintaining code quality, modular architecture, and version control consistency.</p>
-<div class="github-stats">
-                        <img src="https://github-readme-stats-eight-theta.vercel.app/api?username=selvakumar-cmd&show_icons=true&theme=transparent&title_color=d4af37&text_color=a1a1aa&icon_color=d4af37&bg_color=00000000&hide_border=true" alt="GitHub Stats" class="stats-card">
-                        <img src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=selvakumar-cmd&layout=compact&theme=transparent&title_color=d4af37&text_color=a1a1aa&bg_color=00000000&hide_border=true" alt="Top Languages" class="langs-card">
+                    <h3>GitHub Contributions</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 16px;">Open source activity, streaks & language analytics — live from GitHub.</p>
+
+                    <!-- Contribution Graph -->
+                    <div class="gh-stat-block">
+                        <p class="gh-stat-label"><i class="fas fa-chart-bar"></i> Contribution Graph</p>
+                        <img src="https://ghchart.rshah.org/d4af37/selvakumar-cmd" alt="Contribution Graph" class="gh-contribution-graph" loading="lazy">
                     </div>
-                    <a href="https://github.com/selvakumar-cmd" target="_blank" rel="noopener noreferrer" class="github-btn">Visit Profile <i class="fas fa-external-link-alt"></i></a>
+
+                    <!-- Stats Row -->
+                    <div class="gh-stats-row">
+                        <div class="gh-stat-block">
+                            <p class="gh-stat-label"><i class="fas fa-fire"></i> Current Streak</p>
+                            <img src="https://streak-stats.demolab.com/?user=selvakumar-cmd&theme=dark&hide_border=true&background=00000000&ring=d4af37&fire=d4af37&currStreakLabel=d4af37&sideLabels=a1a1aa&dates=a1a1aa" alt="Streak" class="gh-streak-img" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Top Languages -->
+                    <div class="gh-stat-block">
+                        <p class="gh-stat-label"><i class="fas fa-code"></i> Top Languages</p>
+                        <img src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=selvakumar-cmd&layout=compact&theme=transparent&title_color=d4af37&text_color=a1a1aa&bg_color=00000000&hide_border=true" alt="Top Languages" class="gh-langs-img" loading="lazy">
+                    </div>
+
+                    <!-- Mini Stats Grid -->
+                    <div class="gh-mini-stats">
+                        <div class="gh-mini-stat">
+                            <i class="fas fa-code-branch"></i>
+                            <span class="gh-mini-val" id="gh-repos">...</span>
+                            <span class="gh-mini-label">Repositories</span>
+                        </div>
+                        <div class="gh-mini-stat">
+                            <i class="fas fa-star"></i>
+                            <span class="gh-mini-val" id="gh-stars">...</span>
+                            <span class="gh-mini-label">Total Stars</span>
+                        </div>
+                        <div class="gh-mini-stat">
+                            <i class="fas fa-users"></i>
+                            <span class="gh-mini-val" id="gh-followers">...</span>
+                            <span class="gh-mini-label">Followers</span>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/selvakumar-cmd" target="_blank" rel="noopener noreferrer" class="github-btn">View Profile <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -328,8 +365,46 @@
                         </div>
                     </div>
                 </div>
+                <!-- Animated Proficiency Bars -->
                 <div class="skills-chart-container reveal">
-                    <canvas id="skillsRadar"></canvas>
+                    <h3 class="proficiency-title"><i class="fas fa-terminal" style="color:var(--accent-primary)"></i> Technology Proficiency</h3>
+                    <div class="proficiency-bars">
+                        <div class="prof-item">
+                            <div class="prof-header">
+                                <span><i class="fab fa-python" style="color:#3776AB"></i> Python</span>
+                                <span class="prof-percent">92%</span>
+                            </div>
+                            <div class="prof-track"><div class="prof-fill" data-width="92"></div></div>
+                        </div>
+                        <div class="prof-item">
+                            <div class="prof-header">
+                                <span><i class="fas fa-layer-group" style="color:#092E20"></i> Django</span>
+                                <span class="prof-percent">88%</span>
+                            </div>
+                            <div class="prof-track"><div class="prof-fill" data-width="88"></div></div>
+                        </div>
+                        <div class="prof-item">
+                            <div class="prof-header">
+                                <span><i class="fab fa-java" style="color:#f89820"></i> Java</span>
+                                <span class="prof-percent">75%</span>
+                            </div>
+                            <div class="prof-track"><div class="prof-fill" data-width="75"></div></div>
+                        </div>
+                        <div class="prof-item">
+                            <div class="prof-header">
+                                <span><i class="fab fa-js" style="color:#F7DF1E"></i> JavaScript</span>
+                                <span class="prof-percent">80%</span>
+                            </div>
+                            <div class="prof-track"><div class="prof-fill" data-width="80"></div></div>
+                        </div>
+                        <div class="prof-item">
+                            <div class="prof-header">
+                                <span><i class="fas fa-database" style="color:#336791"></i> SQL</span>
+                                <span class="prof-percent">85%</span>
+                            </div>
+                            <div class="prof-track"><div class="prof-fill" data-width="85"></div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -478,7 +553,7 @@
                     </div>
                     <div class="project-info">
                         <p class="problem-solver">Impact: Exploring 1,280+ restaurants across 15 cities — from raw data to live dashboard with actionable business insights.</p>
-                        <h3>Zomato India Restaurant Analytics</h3>
+                        <h3>Zomato Tamil Nadu Restaurant Analytics</h3>
                         <p>End-to-end data analysis project analyzing Zomato restaurant data across India. Built with Python, SQL, Plotly and deployed as a live interactive dashboard on Streamlit Cloud.</p>
                         <ul class="features">
                             <li><strong>Data Cleaning & EDA:</strong> Cleaned and preprocessed 1,280+ restaurant records — handled missing values, duplicates, and type conversions using Pandas.</li>
@@ -556,7 +631,7 @@
                     <div class="achievement-icon-wrapper">
                         <i class="fas fa-trophy"></i>
                     </div>
-                    <h3>3 Live Projects Deployed</h3>
+                    <h3>5+ Production Projects</h3>
                     <p>Live, real-world systems deployed and fully optimized across platforms including Netlify, Streamlit, and Render.</p>
                 </div>
                 <!-- Achievement 2 -->

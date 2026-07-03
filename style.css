@@ -1009,7 +1009,7 @@ body.light-mode .timezone-badge {
 .about-info-box { grid-column: span 4; grid-row: span 3; }
 .edu-box-1 { grid-column: span 6; grid-row: span 2; }
 .edu-box-2 { grid-column: span 6; grid-row: span 2; }
-.cert-box { grid-column: span 6; grid-row: span 2; }
+.cert-box { grid-column: span 6; grid-row: span 2; display: flex; flex-direction: column; }
 
 .github-stats-box { grid-column: span 6; grid-row: span 2; background: rgba(36, 41, 47, 0.15); text-align: center; }
 
@@ -2395,4 +2395,141 @@ body.light-mode {
 body.light-mode .terminal-window-inline {
     background: rgba(15, 23, 42, 0.95); /* Keep dark for terminal feel even in light mode */
     border: 1px solid rgba(184, 134, 11, 0.4);
+}
+
+/* ---- Tech DNA Hexagon Grid ---- */
+.hex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hex-item {
+    width: 120px;
+    height: 138px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: var(--glass-bg);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    position: relative;
+    animation: hexFloat 4s ease-in-out infinite alternate;
+}
+
+.hex-item:nth-child(odd)  { animation-delay: 0s; }
+.hex-item:nth-child(even) { animation-delay: 1.5s; }
+.hex-item:nth-child(3n)   { animation-delay: 0.8s; }
+
+@keyframes hexFloat {
+    0%   { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+.hex-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: linear-gradient(135deg, rgba(var(--hex-color), 0.1), transparent);
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.hex-item:hover {
+    transform: translateY(-16px) scale(1.12) !important;
+    filter: drop-shadow(0 0 18px var(--hex-color)) brightness(1.3);
+    z-index: 10;
+    animation-play-state: paused;
+}
+
+.hex-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.hex-inner i {
+    font-size: 1.8rem;
+    color: var(--hex-color);
+    transition: transform 0.3s ease;
+}
+
+.hex-item:hover .hex-inner i {
+    transform: scale(1.2);
+}
+
+.hex-inner span {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: color 0.3s;
+}
+
+.hex-item:hover .hex-inner span {
+    color: var(--text-primary);
+}
+
+/* Tooltip */
+.hex-tooltip {
+    position: fixed;
+    background: var(--bg-dark);
+    border: 1px solid var(--accent-primary);
+    color: var(--text-primary);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 9999;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+}
+
+.hex-tooltip.visible {
+    opacity: 1;
+}
+
+/* Mobile: smaller hexagons */
+@media (max-width: 768px) {
+    .hex-item {
+        width: 90px;
+        height: 104px;
+    }
+    .hex-inner i {
+        font-size: 1.3rem;
+    }
+    .hex-inner span {
+        font-size: 0.55rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hex-item {
+        width: 75px;
+        height: 86px;
+    }
+    .hex-inner i {
+        font-size: 1.1rem;
+    }
+    .hex-inner span {
+        font-size: 0.48rem;
+    }
+    .hex-grid {
+        gap: 6px;
+    }
 }

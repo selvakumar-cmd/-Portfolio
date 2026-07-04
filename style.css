@@ -1007,6 +1007,7 @@ body.light-mode .timezone-badge {
 
 .about-text-box { grid-column: span 8; grid-row: span 3; }
 .about-info-box { grid-column: span 4; grid-row: span 3; }
+.exp-box { grid-column: span 12; display: flex; flex-direction: column; justify-content: center; }
 .edu-box-1 { grid-column: span 6; grid-row: span 2; }
 .edu-box-2 { grid-column: span 6; grid-row: span 2; }
 .cert-box { grid-column: span 6; grid-row: span 2; display: flex; flex-direction: column; }

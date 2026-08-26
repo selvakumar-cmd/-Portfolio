@@ -597,6 +597,55 @@ body.light-mode .timezone-badge {
     background: rgba(0, 0, 0, 0.03);
 }
 
+.views-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    transition: var(--transition);
+}
+
+.views-badge i {
+    color: var(--primary-color);
+    font-size: 0.82rem;
+}
+
+.views-badge:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+}
+
+body.light-mode .views-badge {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.footer-views {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.footer-views i {
+    color: var(--primary-color);
+}
+
+.footer-views strong {
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-weight: 600;
+}
+
 .pulse-dot {
     width: 8px;
     height: 8px;

@@ -1,6 +1,6 @@
-# Selvakumar S | Technomancy Portfolio 🧙‍♂️✨
+# Selvakumar S | The One Selvakumar • Selva Harrington (Technomancy) 🧙‍♂️✨
 
-Welcome to my professional portfolio! I am a **Python Full Stack Developer** specializing in building robust Web Development systems with Django and crafting interactive, high-end user experiences.
+Welcome to the official portfolio of **Selvakumar S** (*The One Selvakumar* / *Selva Harrington*). I am a **Python & Java Full Stack Developer** from Chennai specializing in building enterprise backend architectures with Django & Spring Boot, crafting interactive, high-end user experiences under the brand **Technomancy**.
 
 ## 🚀 Live Demo
 **Check it out here: 

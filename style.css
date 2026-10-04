@@ -4228,3 +4228,44 @@ body.house-hufflepuff .tarot-archetype-tag { border-color: rgba(234, 179, 8, 0.5
     }
 }
 
+
+/* Arcane Skills Card Header & Icons */
+.arcane-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.arcane-card-header h3 {
+    margin-bottom: 0 !important;
+    font-size: 1.25rem !important;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.rune-icon {
+    font-size: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    box-shadow: 0 0 16px rgba(212, 175, 55, 0.15);
+    margin-bottom: 4px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-category:hover .rune-icon {
+    transform: scale(1.12);
+    border-color: rgba(212, 175, 55, 0.65);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.35);
+}
+
+.house-btn .house-badge i {
+    margin-right: 6px;
+}

@@ -998,6 +998,7 @@ body.light-mode .global-remote-badge i {
     width: 100%;
     aspect-ratio: 1 / 1.1;
     object-fit: cover;
+    object-position: center 12%;
     border-radius: 20px;
     display: block;
     filter: contrast(1.05) saturate(1.1);

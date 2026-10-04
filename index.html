@@ -292,6 +292,10 @@
                     <span class="pulse-dot"></span>
                     <span id="live-time">IST Loading...</span>
                 </div>
+                <button id="sorting-hat-btn" class="sorting-hat-btn" aria-label="Sorting Hat Ceremony" title="Hogwarts Sorting Hat Ceremony">
+                    <i class="fas fa-hat-wizard"></i>
+                    <span class="hat-btn-text">House</span>
+                </button>
                 <button id="terminal-btn" class="terminal-toggle-btn" aria-label="Terminal Mode">
                     <i class="fas fa-terminal"></i>
                 </button>
@@ -305,8 +309,18 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Floating Hogwarts Candles -->
     <section id="home" class="hero">
+        <!-- Floating Great Hall Magical Candles -->
+        <div class="floating-candles-layer" aria-hidden="true">
+            <div class="hogwarts-candle candle-1"><div class="candle-flame"></div></div>
+            <div class="hogwarts-candle candle-2"><div class="candle-flame"></div></div>
+            <div class="hogwarts-candle candle-3"><div class="candle-flame"></div></div>
+            <div class="hogwarts-candle candle-4"><div class="candle-flame"></div></div>
+            <div class="hogwarts-candle candle-5"><div class="candle-flame"></div></div>
+            <div class="hogwarts-candle candle-6"><div class="candle-flame"></div></div>
+        </div>
+
         <div class="container">
             <div class="hero-content">
                 <h2 class="reveal">Hello, I'm</h2>
@@ -940,12 +954,49 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer with Marauder's Map Easter Egg -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Selvakumar. All rights reserved.</p>
+            <div class="marauders-map-banner">
+                <span class="wand-star">✨</span>
+                <span class="marauder-quote" id="marauder-quote">"I solemnly swear that I am up to no good."</span>
+                <button type="button" id="mischief-btn" class="btn-mischief" title="Cast Mischief Managed">Mischief Managed 🪄</button>
+            </div>
+            <p>&copy; 2026 Selvakumar S (The One Selva Harrington). All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Hogwarts Sorting Hat Modal -->
+    <div id="sorting-hat-modal" class="sorting-hat-modal">
+        <div class="sorting-hat-card">
+            <button class="sorting-close" id="sorting-close" aria-label="Close Sorting Hat">&times;</button>
+            <div class="hat-avatar-wrap">
+                <span class="hat-icon">🧙‍♂️</span>
+                <div class="hat-magic-glow"></div>
+            </div>
+            <h3 class="hat-title">The Sorting Hat Ceremony</h3>
+            <p class="hat-speech" id="hat-speech">"Step forth! Let me inspect your code and ambition to reveal your true Hogwarts House..."</p>
+            <div class="house-selector-grid">
+                <button type="button" class="house-btn gryffindor" data-house="gryffindor">
+                    <span class="house-badge">🦁 Gryffindor</span>
+                    <span class="house-trait">Courage & Bold Architectures</span>
+                </button>
+                <button type="button" class="house-btn ravenclaw" data-house="ravenclaw">
+                    <span class="house-badge">🦅 Ravenclaw</span>
+                    <span class="house-trait">Wisdom, Clean Code & Wit</span>
+                </button>
+                <button type="button" class="house-btn slytherin" data-house="slytherin">
+                    <span class="house-badge">🐍 Slytherin</span>
+                    <span class="house-trait">Ambition & High-Scale Systems</span>
+                </button>
+                <button type="button" class="house-btn hufflepuff" data-house="hufflepuff">
+                    <span class="house-badge">🦡 Hufflepuff</span>
+                    <span class="house-trait">Loyalty, Precision & Resilience</span>
+                </button>
+            </div>
+            <div class="house-active-banner">Current Realm: <strong id="current-house-name">Gryffindor Gold</strong></div>
+        </div>
+    </div>
 
     <!-- Terminal Mode Modal -->
     <div id="terminal-modal" class="terminal-modal">
@@ -960,7 +1011,7 @@
             </div>
             <div class="terminal-body" id="terminal-output">
                 <p>Welcome to Selvakumar's Portfolio Terminal.</p>
-                <p>Type <span class="cmd-highlight">help</span> to see available commands.</p>
+                <p>Type <span class="cmd-highlight">help</span> to see available commands or <span class="cmd-highlight">spells</span> for Hogwarts magic.</p>
             </div>
             <div class="terminal-input-line">
                 <span class="prompt">selvakumar@portfolio:~$</span>
@@ -975,6 +1026,7 @@
         <a href="#projects" class="dock-btn" title="Projects"><i class="fas fa-layer-group"></i></a>
         <a href="#skills" class="dock-btn" title="Skills"><i class="fas fa-wand-magic-sparkles"></i></a>
         <a href="#about" class="dock-btn" title="Experience"><i class="fas fa-briefcase"></i></a>
+        <button type="button" id="dock-sorting-btn" class="dock-btn dock-btn-hat" title="Hogwarts Sorting Hat"><i class="fas fa-hat-wizard"></i></button>
         <a href="Selva%20kumar.S.pdf" download="Selva kumar.S.pdf" class="dock-btn dock-btn-resume" title="Download Resume"><i class="fas fa-file-pdf"></i></a>
         <a href="#contact" class="dock-btn" title="Contact"><i class="fas fa-paper-plane"></i></a>
     </div>

@@ -793,4 +793,195 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
+    // =========================================================
+    // 🧙‍♂️ HOGWARTS MAGICAL SYSTEM — Pure Harry Potter Vibe
+    // =========================================================
+
+    // --- E. Sorting Hat Ceremony & Hogwarts House Theme Switcher ---
+    const sortingHatModal = document.getElementById('sorting-hat-modal');
+    const sortingHatBtn = document.getElementById('sorting-hat-btn');
+    const sortingClose = document.getElementById('sorting-close');
+    const dockSortingBtn = document.getElementById('dock-sorting-btn');
+    const hatSpeech = document.getElementById('hat-speech');
+    const currentHouseName = document.getElementById('current-house-name');
+    const houseBtns = document.querySelectorAll('.house-btn');
+
+    const houseData = {
+        gryffindor: {
+            name: 'Gryffindor Gold & Crimson',
+            class: 'house-gryffindor',
+            speech: '"Ah... I sense great courage here! Daring, nerve, and chivalry — the builder who ships bold architectures and never backs down from a deadline. GRYFFINDOR! ⚡🦁"',
+            toast: '🦁 Welcome, Gryffindor! Courage & Bold Code guide you.'
+        },
+        ravenclaw: {
+            name: 'Ravenclaw Sapphire & Bronze',
+            class: 'house-ravenclaw',
+            speech: '"Excellent... a keen and curious mind! You value clean architecture, elegant solutions, and elegant API design above all. RAVENCLAW! 🦅✨"',
+            toast: '🦅 Welcome, Ravenclaw! Wit & Wisdom illuminate your code.'
+        },
+        slytherin: {
+            name: 'Slytherin Emerald & Silver',
+            class: 'house-slytherin',
+            speech: '"Cunning resourcefulness! You build systems that scale to millions, optimise every query, and always find the most efficient path. SLYTHERIN! 🐍💚"',
+            toast: '🐍 Welcome, Slytherin! Ambition & Cunning drive your systems.'
+        },
+        hufflepuff: {
+            name: 'Hufflepuff Gold & Black',
+            class: 'house-hufflepuff',
+            speech: '"Steadfast and loyal! Patient, fair, and dedicated — you deliver consistent, resilient code and never leave a teammate behind. HUFFLEPUFF! 🦡🌟"',
+            toast: '🦡 Welcome, Hufflepuff! Loyalty & Hard Work define your craft.'
+        }
+    };
+
+    const houseClasses = ['house-gryffindor', 'house-ravenclaw', 'house-slytherin', 'house-hufflepuff'];
+    let savedHouse = localStorage.getItem('hogwarts-house') || null;
+
+    function openSortingHat() {
+        if (!sortingHatModal) return;
+        sortingHatModal.classList.add('active');
+        if (hatSpeech) hatSpeech.textContent = '"Step forth! Let me inspect your code and ambition to reveal your true Hogwarts House..."';
+        // Restore saved selection
+        houseBtns.forEach(btn => {
+            btn.classList.remove('active');
+            if (savedHouse && btn.dataset.house === savedHouse) btn.classList.add('active');
+        });
+        if (savedHouse && houseData[savedHouse]) {
+            if (currentHouseName) currentHouseName.textContent = houseData[savedHouse].name;
+        }
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSortingHat() {
+        if (!sortingHatModal) return;
+        sortingHatModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (sortingHatBtn) sortingHatBtn.addEventListener('click', openSortingHat);
+    if (dockSortingBtn) dockSortingBtn.addEventListener('click', openSortingHat);
+    if (sortingClose) sortingClose.addEventListener('click', closeSortingHat);
+    if (sortingHatModal) {
+        sortingHatModal.addEventListener('click', (e) => {
+            if (e.target === sortingHatModal) closeSortingHat();
+        });
+    }
+
+    houseBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const house = btn.dataset.house;
+            const data = houseData[house];
+            if (!data) return;
+
+            // Remove all previous house classes
+            houseClasses.forEach(c => document.body.classList.remove(c));
+            document.body.classList.add(data.class);
+            localStorage.setItem('hogwarts-house', house);
+            savedHouse = house;
+
+            // Animate hat speech
+            if (hatSpeech) {
+                hatSpeech.style.opacity = '0';
+                setTimeout(() => {
+                    hatSpeech.textContent = data.speech;
+                    hatSpeech.style.transition = 'opacity 0.5s ease';
+                    hatSpeech.style.opacity = '1';
+                }, 200);
+            }
+
+            // Update active state
+            houseBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Update display name
+            if (currentHouseName) currentHouseName.textContent = data.name;
+
+            // Fire spell burst from button
+            const rect = btn.getBoundingClientRect();
+            fireWandBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, '#d4af37');
+
+            // Close after 2.4s
+            setTimeout(closeSortingHat, 2400);
+
+            // Show glass toast
+            showGlassToast(data.toast.substring(0, 30), data.toast.substring(30));
+        });
+    });
+
+    // Restore house on page load
+    if (savedHouse && houseData[savedHouse]) {
+        houseClasses.forEach(c => document.body.classList.remove(c));
+        document.body.classList.add(houseData[savedHouse].class);
+        if (currentHouseName) currentHouseName.textContent = houseData[savedHouse].name;
+    }
+
+    // --- F. Wand Click Spell Burst (click anywhere) ---
+    const spellColors = ['#ffd700', '#38bdf8', '#a78bfa', '#f472b6', '#34d399'];
+
+    function fireWandBurst(x, y, color) {
+        const burst = document.createElement('div');
+        burst.className = 'wand-burst';
+        burst.style.left = `${x}px`;
+        burst.style.top = `${y}px`;
+        burst.style.color = color || spellColors[Math.floor(Math.random() * spellColors.length)];
+        document.body.appendChild(burst);
+        setTimeout(() => {
+            if (burst && burst.parentNode) burst.parentNode.removeChild(burst);
+        }, 700);
+    }
+
+    if (!isMobile) {
+        document.addEventListener('click', (e) => {
+            // Only fire on non-interactive or background clicks
+            const tag = e.target.tagName.toLowerCase();
+            if (['input', 'textarea', 'select'].includes(tag)) return;
+            const color = spellColors[Math.floor(Math.random() * spellColors.length)];
+            fireWandBurst(e.clientX, e.clientY, color);
+        });
+    }
+
+    // --- G. Marauder's Map Footer Easter Egg ---
+    const mischiefBtn = document.getElementById('mischief-btn');
+    const marauderQuote = document.getElementById('marauder-quote');
+
+    const marauderLines = [
+        '"I solemnly swear that I am up to no good."',
+        '"Mischief Managed. 🗺️"',
+        '"Messrs. Moony, Wormtail, Padfoot & Prongs are proud to present..."',
+        '"The Marauder\'s Map: it shows every inch of Hogwarts, every footstep."',
+        '"...And with that, the map goes blank." ✨'
+    ];
+    let marauderIdx = 0;
+    let mischiefManaged = false;
+
+    if (mischiefBtn && marauderQuote) {
+        mischiefBtn.addEventListener('click', () => {
+            mischiefManaged = !mischiefManaged;
+            if (mischiefManaged) {
+                mischiefBtn.textContent = 'I Solemnly Swear... 🪄';
+                // Cycle through quotes
+                marauderIdx = 0;
+                const cycleQuotes = setInterval(() => {
+                    marauderIdx++;
+                    if (marauderIdx >= marauderLines.length) {
+                        clearInterval(cycleQuotes);
+                        mischiefManaged = false;
+                        mischiefBtn.textContent = 'Mischief Managed 🪄';
+                        marauderIdx = 0;
+                        return;
+                    }
+                    if (marauderQuote) marauderQuote.textContent = marauderLines[marauderIdx];
+                }, 1600);
+            } else {
+                if (marauderQuote) marauderQuote.textContent = marauderLines[0];
+                mischiefBtn.textContent = 'Mischief Managed 🪄';
+            }
+            fireWandBurst(
+                mischiefBtn.getBoundingClientRect().left + mischiefBtn.getBoundingClientRect().width / 2,
+                mischiefBtn.getBoundingClientRect().top,
+                '#ffd700'
+            );
+        });
+    }
+
 });
+

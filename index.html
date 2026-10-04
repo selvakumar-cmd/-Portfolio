@@ -119,11 +119,11 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="brand-logo.jpg">
     
-    <!-- Google Fonts - Non render blocking -->
+    <!-- Google Fonts - Non render blocking (Cinzel, MedievalSharp, Outfit, Manrope) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=MedievalSharp&family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=MedievalSharp&family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
     <!-- Font Awesome - Non render blocking -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -320,8 +320,16 @@
                 </div>
             </div>
             <div class="hero-image reveal">
-                <div class="image-wrapper">
-                    <img src="avatar.jpg" alt="Profile" id="hero-img">
+                <div class="arcane-ring-container">
+                    <div class="arcane-rune-circle ring-outer"></div>
+                    <div class="arcane-rune-circle ring-inner"></div>
+                    <div class="image-wrapper arcane-frame">
+                        <img src="avatar.jpg" alt="Profile" id="hero-img">
+                        <div class="arcane-corner corner-tl"></div>
+                        <div class="arcane-corner corner-tr"></div>
+                        <div class="arcane-corner corner-bl"></div>
+                        <div class="arcane-corner corner-br"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -493,8 +501,11 @@
             </div>
             <div class="skills-wrapper">
                 <div class="skills-grid">
-                    <div class="skill-category reveal">
-                        <h3>Backend Engineering</h3>
+                    <div class="skill-category grimoire-card reveal">
+                        <div class="arcane-card-header">
+                            <span class="rune-icon">ᚠ</span>
+                            <h3>Backend Sorcery</h3>
+                        </div>
                         <div class="skill-items">
                             <div class="skill-tag"><i class="fab fa-python" style="color: #3776AB;"></i> Python</div>
                             <div class="skill-tag"><i class="fab fa-java" style="color: #f89820;"></i> Java</div>
@@ -503,8 +514,11 @@
                             <div class="skill-tag"><i class="fas fa-shield-alt" style="color: #E53935;"></i> RBAC Auth</div>
                         </div>
                     </div>
-                    <div class="skill-category reveal">
-                        <h3>Data & Workflows</h3>
+                    <div class="skill-category grimoire-card reveal">
+                        <div class="arcane-card-header">
+                            <span class="rune-icon">ᛏ</span>
+                            <h3>Data Alchemy & Workflows</h3>
+                        </div>
                         <div class="skill-items">
                             <div class="skill-tag"><i class="fas fa-database" style="color: #336791;"></i> PostgreSQL</div>
                             <div class="skill-tag"><i class="fas fa-server" style="color: #003B57;"></i> SQLite</div>
@@ -512,8 +526,11 @@
                             <div class="skill-tag"><i class="fas fa-envelope" style="color: #F44336;"></i> SMTP Automation</div>
                         </div>
                     </div>
-                    <div class="skill-category reveal">
-                        <h3>Frontend & Tools</h3>
+                    <div class="skill-category grimoire-card reveal">
+                        <div class="arcane-card-header">
+                            <span class="rune-icon">ᚱ</span>
+                            <h3>Frontend Charms & Tools</h3>
+                        </div>
                         <div class="skill-items">
                             <div class="skill-tag"><i class="fab fa-js" style="color: #F7DF1E;"></i> JavaScript ES6+</div>
                             <div class="skill-tag"><i class="fab fa-bootstrap" style="color: #7952B3;"></i> Bootstrap 5</div>
@@ -521,14 +538,17 @@
                             <div class="skill-tag"><i class="fab fa-github" style="color: #FFFFFF;"></i> Git/GitHub</div>
                         </div>
                     </div>
-                    <div class="skill-category reveal">
-                        <h3>Deployment & Cloud</h3>
+                    <div class="skill-category grimoire-card reveal">
+                        <div class="arcane-card-header">
+                            <span class="rune-icon">ᚨ</span>
+                            <h3>Cloud Conjuring & DevOps</h3>
+                        </div>
                         <div class="skill-items">
                             <div class="skill-tag"><i class="fas fa-cloud-upload-alt" style="color: #FFFFFF;"></i> Vercel</div>
                             <div class="skill-tag"><i class="fas fa-bolt" style="color: #00C7B7;"></i> Netlify</div>
                             <div class="skill-tag"><i class="fas fa-cogs" style="color: #46E3B7;"></i> Render</div>
                             <div class="skill-tag"><i class="fas fa-stream" style="color: #FF4B4B;"></i> Streamlit Cloud</div>
-                            <div class="skill-tag"><i class="fab fa-github" style="color: #FFFFFF;"></i> Github</div>
+                            <div class="skill-tag"><i class="fab fa-github" style="color: #FFFFFF;"></i> GitHub CI/CD</div>
                         </div>
                     </div>
                 </div>

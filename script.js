@@ -357,11 +357,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         const commands = {
-            'help': 'Available commands: <br>- <span class="cmd-highlight">whoami</span>: About me<br>- <span class="cmd-highlight">skills</span>: My expertise<br>- <span class="cmd-highlight">projects</span>: View my work<br>- <span class="cmd-highlight">contact</span>: Get in touch<br>- <span class="cmd-highlight">clear</span>: Clear terminal',
-            'whoami': 'Selvakumar - Python Full Stack Developer. I build robust Django applications with clean backend architecture.',
-            'skills': 'Python, Django, REST APIs, SQL (PostgreSQL/SQLite), JavaScript, Git/GitHub. Cloud/Deployment: Netlify, Vercel, Render, Streamlit Cloud.',
-            'projects': '1. Enterprise Complaint Management System<br>2. Vetsphere Pet Care Management<br>3. Zomato India Restaurant Analytics',
-            'contact': 'Email: contact.s.selvakumar@gmail.com<br>LinkedIn: https://www.linkedin.com/in/contact-selvakumar'
+            'help': 'Available commands: <br>- <span class="cmd-highlight">whoami</span>: About me<br>- <span class="cmd-highlight">skills</span>: My expertise<br>- <span class="cmd-highlight">projects</span>: View my work<br>- <span class="cmd-highlight">contact</span>: Get in touch<br>- <span class="cmd-highlight">spells</span>: Technomancy magical incantations<br>- <span class="cmd-highlight">accio resume</span>: Summon resume<br>- <span class="cmd-highlight">lumos</span>: Turn on light mode<br>- <span class="cmd-highlight">nox</span>: Turn on dark mode<br>- <span class="cmd-highlight">alohomora</span>: Unlock secret lore<br>- <span class="cmd-highlight">clear</span>: Clear terminal',
+            'whoami': 'Selvakumar S (The One Selva Harrington) — Python Full Stack Developer & Technomancer specializing in Django, Java, Spring Boot and scalable architectures.',
+            'skills': 'Python, Django, Java, Spring Boot, REST APIs, PostgreSQL, SQLite, JavaScript, Git/GitHub, Docker, Netlify, Render.',
+            'projects': '1. Enterprise SLA Complaint Management<br>2. Vetsphere Pet Care Architecture<br>3. Zomato India Restaurant Analytics<br>4. AI Resume Builder System',
+            'contact': 'Email: contact.s.selvakumar@gmail.com<br>LinkedIn: https://www.linkedin.com/in/contact-selvakumar',
+            'spells': '📜 Technomancy Grimoire Spells:<br>- <span class="cmd-highlight">accio resume</span>: Summon PDF Resume<br>- <span class="cmd-highlight">lumos</span>: Illuminate realm (Light mode)<br>- <span class="cmd-highlight">nox</span>: Cast shadows (Dark mode)<br>- <span class="cmd-highlight">alohomora</span>: Unlock secret technomancy lore<br>- <span class="cmd-highlight">expelliarmus</span>: Disarm bugs and system anomalies',
+            'accio': '✨ Accio Resume! Summoning Selvakumar\'s Resume now...',
+            'accio resume': '✨ Accio Resume! Summoning Selvakumar\'s Resume now...',
+            'lumos': '✨ Lumos Maxima! Illuminating the Technomancy realm...',
+            'nox': '🌑 Nox! Casting shadows across the realm...',
+            'alohomora': '🗝️ Alohomora! Unlocked Secret Lore: "Any sufficiently advanced technology is indistinguishable from magic." — Arthur C. Clarke / Selva Harrington',
+            'expelliarmus': '⚡ Expelliarmus! Disarming 100% of runtime exceptions, bugs, and latency.'
         };
 
         terminalInput.addEventListener('keydown', (e) => {
@@ -380,8 +387,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
+                // Spell handling side-effects
+                if (cmd === 'accio' || cmd === 'accio resume') {
+                    const link = document.createElement('a');
+                    link.href = 'Selva kumar.S.pdf';
+                    link.download = 'Selva kumar.S.pdf';
+                    link.target = '_blank';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else if (cmd === 'lumos') {
+                    document.body.classList.remove('dark-mode');
+                    document.body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                    if (typeof initParticles === 'function') initParticles(true);
+                } else if (cmd === 'nox') {
+                    document.body.classList.remove('light-mode');
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    if (typeof initParticles === 'function') initParticles(false);
+                }
+
                 const responseLine = document.createElement('p');
-                responseLine.innerHTML = commands[cmd] || `bash: ${cmd}: command not found. Type <span class="cmd-highlight">help</span>`;
+                responseLine.innerHTML = commands[cmd] || `bash: ${cmd}: command not found. Type <span class="cmd-highlight">help</span> or <span class="cmd-highlight">spells</span>`;
                 terminalOutput.appendChild(responseLine);
 
                 terminalOutput.scrollTop = terminalOutput.scrollHeight;
@@ -534,19 +562,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="cmd-highlight">skills</span> - List core technical skills<br>
                 <span class="cmd-highlight">projects</span> - View my top projects<br>
                 <span class="cmd-highlight">contact</span> - Get my email<br>
+                <span class="cmd-highlight">spells</span> - Wizarding Technomancy spells<br>
+                <span class="cmd-highlight">accio resume</span> - Download resume<br>
+                <span class="cmd-highlight">lumos</span> - Light mode<br>
+                <span class="cmd-highlight">nox</span> - Dark mode<br>
                 <span class="cmd-highlight">clear</span> - Clear the terminal`;
                 break;
             case 'whoami':
-                response.textContent = "Selvakumar S - Python Full Stack Developer specializing in Django and robust backend systems.";
+                response.textContent = "Selvakumar S (The One Selva Harrington) — Full Stack Developer & Technomancer.";
                 break;
             case 'skills':
-                response.innerHTML = "Python, Django, JavaScript, SQL, AWS, Docker, HTML/CSS, Git.";
+                response.innerHTML = "Python, Django, Java, Spring Boot, JavaScript, SQL, AWS, Docker, Git.";
                 break;
             case 'projects':
-                response.innerHTML = "1. AI Resume Builder<br>2. Support Ticket Automation<br>3. Zomato Data Analytics<br>4. Vetsphere Clinic Management";
+                response.innerHTML = "1. AI Resume Builder<br>2. SLA Ticket Automation<br>3. Zomato Data Analytics<br>4. Vetsphere Clinic Management";
                 break;
             case 'contact':
                 response.innerHTML = "Email: <a href='mailto:contact.s.selvakumar@gmail.com' style='color:var(--accent-primary)'>contact.s.selvakumar@gmail.com</a>";
+                break;
+            case 'spells':
+                response.innerHTML = "📜 <strong>Technomancy Spells:</strong><br>- <span class='cmd-highlight'>accio resume</span>: Summon PDF Resume<br>- <span class='cmd-highlight'>lumos</span>: Illuminate realm (Light)<br>- <span class='cmd-highlight'>nox</span>: Cast shadows (Dark)<br>- <span class='cmd-highlight'>alohomora</span>: Unlock secret lore";
+                break;
+            case 'accio':
+            case 'accio resume':
+                response.textContent = "✨ Accio Resume! Summoning Selvakumar's Resume now...";
+                {
+                    const link = document.createElement('a');
+                    link.href = 'Selva kumar.S.pdf';
+                    link.download = 'Selva kumar.S.pdf';
+                    link.target = '_blank';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+                break;
+            case 'lumos':
+                response.textContent = "✨ Lumos Maxima! Illuminating the realm...";
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light');
+                if (typeof initParticles === 'function') initParticles(true);
+                break;
+            case 'nox':
+                response.textContent = "🌑 Nox! Casting shadows across the realm...";
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                if (typeof initParticles === 'function') initParticles(false);
+                break;
+            case 'alohomora':
+                response.textContent = '🗝️ Alohomora! "Any sufficiently advanced technology is indistinguishable from magic." — Selva Harrington';
                 break;
             case 'clear':
                 outputDiv.innerHTML = '';
@@ -555,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 response.textContent = "Nice try, but you are not in the sudoers file. This incident will be reported. 🚨";
                 break;
             default:
-                response.innerHTML = `Command not found: ${cmd}. Type <span class="cmd-highlight">help</span> for a list of commands.`;
+                response.innerHTML = `Command not found: ${cmd}. Type <span class="cmd-highlight">help</span> or <span class="cmd-highlight">spells</span>.`;
         }
         
         response.style.color = "var(--text-secondary)";
@@ -628,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollProgressBar.style.width = scrollPercent + '%';
         }
 
-        // Show quick dock after scrolling past hero section (300px)
+        // Show quick dock after scrolling past hero section (350px)
         if (quickDock) {
             if (scrollTop > 350) {
                 quickDock.classList.add('visible');
@@ -693,6 +758,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.removeChild(textarea);
             }
         });
+    }
+
+    // --- D. Interactive Lumos Wand Particle Trail (Technomancy Magic) ---
+    if (!prefersReducedMotion && !isMobile) {
+        let lastParticleTime = 0;
+        const particleColors = ['#d4af37', '#ffd700', '#38bdf8', '#7dd3fc', '#ffffff'];
+
+        window.addEventListener('mousemove', (e) => {
+            const now = performance.now();
+            if (now - lastParticleTime < 30) return; // Throttle to maintain 60fps
+            lastParticleTime = now;
+
+            const particle = document.createElement('div');
+            particle.className = 'lumos-sparkle';
+            const size = Math.floor(Math.random() * 5) + 3; // 3px to 7px
+            const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${e.clientX}px`;
+            particle.style.top = `${e.clientY}px`;
+            particle.style.background = color;
+            particle.style.color = color;
+            particle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                if (particle && particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 750);
+        }, { passive: true });
     }
 
 });

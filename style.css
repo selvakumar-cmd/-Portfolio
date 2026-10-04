@@ -3019,3 +3019,180 @@ body.light-mode .toast-notify {
 body.light-mode .toast-title {
     color: #0f172a;
 }
+
+/* =========================================================
+   STYLE 3: INTERACTIVE ARCANE GRIMOIRE & TECHNOMANCY SYSTEM
+   ========================================================= */
+
+/* Arcane Rune Ring Container */
+.arcane-ring-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* Rotating Holographic Rune Rings */
+.arcane-rune-circle {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.arcane-rune-circle.ring-outer {
+    width: 116%;
+    height: 116%;
+    border: 1.5px dashed rgba(212, 175, 55, 0.45);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), inset 0 0 30px rgba(212, 175, 55, 0.1);
+    animation: rotateRuneOuter 35s linear infinite;
+}
+
+.arcane-rune-circle.ring-outer::before {
+    content: "✦  ⚡  ✦  ⚡  ✦  ⚡  ✦  ⚡";
+    position: absolute;
+    inset: -14px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 11px;
+    color: rgba(212, 175, 55, 0.55);
+    letter-spacing: 6px;
+    pointer-events: none;
+}
+
+.arcane-rune-circle.ring-inner {
+    width: 130%;
+    height: 130%;
+    border: 1.5px dotted rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.15);
+    animation: rotateRuneInner 25s linear infinite reverse;
+}
+
+.arcane-rune-circle.ring-inner::after {
+    content: "ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ";
+    position: absolute;
+    inset: -12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(56, 189, 248, 0.45);
+    font-family: 'MedievalSharp', serif;
+    letter-spacing: 8px;
+    pointer-events: none;
+}
+
+@keyframes rotateRuneOuter {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateRuneInner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* Arcane Avatar Frame & Corner Glyphs */
+.arcane-frame {
+    position: relative;
+    z-index: 2;
+    border: 1.5px solid rgba(212, 175, 55, 0.35);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arcane-frame:hover {
+    border-color: rgba(212, 175, 55, 0.8);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 45px rgba(212, 175, 55, 0.4), 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.arcane-corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px #d4af37);
+    transition: all 0.3s ease;
+}
+
+.arcane-corner.corner-tl {
+    top: -3px;
+    left: -3px;
+    border-top: 3px solid #d4af37;
+    border-left: 3px solid #d4af37;
+    border-top-left-radius: 4px;
+}
+
+.arcane-corner.corner-tr {
+    top: -3px;
+    right: -3px;
+    border-top: 3px solid #d4af37;
+    border-right: 3px solid #d4af37;
+    border-top-right-radius: 4px;
+}
+
+.arcane-corner.corner-bl {
+    bottom: -3px;
+    left: -3px;
+    border-bottom: 3px solid #d4af37;
+    border-left: 3px solid #d4af37;
+    border-bottom-left-radius: 4px;
+}
+
+.arcane-corner.corner-br {
+    bottom: -3px;
+    right: -3px;
+    border-bottom: 3px solid #d4af37;
+    border-right: 3px solid #d4af37;
+    border-bottom-right-radius: 4px;
+}
+
+/* Grimoire Interactive Card Highlights */
+.grimoire-card, .skill-category, .project-card, .bento-item {
+    position: relative;
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.08) 0%, rgba(13, 13, 13, 0.95) 70%);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.grimoire-card:hover, .skill-category:hover, .project-card:hover, .bento-item:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+/* Lumos Wand Particle Trail */
+.lumos-sparkle {
+    position: fixed;
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 99999;
+    animation: lumosParticleFade 0.75s ease-out forwards;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes lumosParticleFade {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1) translateY(-15px);
+    }
+}
+
+@media (max-width: 768px) {
+    .arcane-rune-circle.ring-inner {
+        display: none; /* Keep cleaner on small mobile screens */
+    }
+    .arcane-rune-circle.ring-outer {
+        width: 108%;
+        height: 108%;
+    }
+}
+

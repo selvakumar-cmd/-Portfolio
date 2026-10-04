@@ -307,39 +307,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize on page load with saved theme
     initParticles(startLight);
 
-    // --- 11. Skills Radar Chart ---
-    const ctx = document.getElementById('skillsRadar');
-    if (ctx && window.Chart) {
-        new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['Python', 'Django', 'SQL', 'JavaScript', 'HTML/CSS', 'REST APIs'],
-                datasets: [{
-                    label: 'Skill Proficiency',
-                    data: [90, 85, 80, 75, 85, 70],
-                    backgroundColor: 'rgba(99, 102, 241, 0.2)',
-                    borderColor: 'rgba(99, 102, 241, 1)',
-                    pointBackgroundColor: 'rgba(168, 85, 247, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(168, 85, 247, 1)'
-                }]
-            },
-            options: {
-                scales: {
-                    r: {
-                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        pointLabels: { color: '#a1a1aa', font: { size: 12, family: "'Inter', sans-serif" } },
-                        ticks: { display: false, min: 0, max: 100 }
-                    }
-                },
-                plugins: { legend: { display: false } },
-                maintainAspectRatio: false
-            }
-        });
-    }
-
     // --- 12. Terminal Mode ---
     const terminalBtn = document.getElementById('terminal-btn');
     const terminalModal = document.getElementById('terminal-modal');
@@ -521,13 +488,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.style.setProperty('--mouse-x', `${x}%`);
                 item.style.setProperty('--mouse-y', `${y}%`);
             });
-        });
-    }
-        // --- 13. GitHub Activity Calendar ---
-    if (typeof GitHubCalendar !== 'undefined') {
-        GitHubCalendar(".calendar", "selvakumar-cmd", {
-            responsive: true,
-            tooltips: true
         });
     }
 

@@ -4142,8 +4142,92 @@ body.house-hufflepuff .tarot-card .tarot-front,
 body.house-hufflepuff .tarot-card .tarot-back { border-color: rgba(234, 179, 8, 0.6); }
 body.house-hufflepuff .tarot-archetype-tag { border-color: rgba(234, 179, 8, 0.5); color: #fde047; }
 
+/* =====================================================
+   📱 MOBILE RESPONSIVENESS & TOUCH OPTIMIZATIONS
+   ===================================================== */
 @media (max-width: 768px) {
-    .tarot-deck { grid-template-columns: 1fr; gap: 24px; }
-    .tarot-card { height: 420px; }
-    .hogwarts-castle-horizon { height: 90px; }
+    /* Hero Castle & Candles */
+    .hogwarts-castle-bg-img {
+        object-position: 45% center;
+    }
+    .candle-1 { top: 6%; left: 4%; height: 38px; }
+    .candle-2 { display: none; }
+    .candle-3 { top: 8%; right: 5%; height: 40px; }
+    .candle-4 { display: none; }
+    .candle-5 { top: 65%; left: 4%; height: 35px; }
+    .candle-6 { top: 68%; right: 4%; height: 38px; }
+
+    /* Tarot Cards Deck on Mobile */
+    .tarot-deck {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        max-width: 330px;
+        margin: 35px auto 0;
+    }
+    .tarot-card {
+        height: 420px;
+    }
+    .tarot-prompt span {
+        font-size: 0.72rem;
+    }
+
+    /* Hogwarts Acceptance Letters */
+    .hogwarts-letters-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .letter-paper {
+        padding: 52px 18px 22px;
+    }
+    .letter-title {
+        font-size: 1.45rem;
+    }
+    .letter-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .letter-btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
+
+@media (max-width: 480px) {
+    /* Floating Quick Dock Compact for Small Screens */
+    .quick-dock {
+        bottom: 14px;
+        padding: 6px 10px;
+        gap: 6px;
+        max-width: calc(100vw - 20px);
+    }
+    .dock-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    /* Sorting Hat Modal Mobile Fit */
+    .sorting-hat-window {
+        padding: 24px 16px;
+        width: 94%;
+    }
+    .sorting-hat-icon {
+        font-size: 3rem;
+    }
+    .hat-speech {
+        font-size: 0.95rem;
+    }
+    .house-selection-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    /* Marauder's Map Banner Mobile */
+    .marauder-banner {
+        padding: 16px 14px;
+    }
+    .marauder-quote {
+        font-size: 0.95rem;
+    }
+}
+

@@ -249,8 +249,14 @@
     </style>
 </head>
 <body class="dark-mode">
-    <!-- Background Canvas -->
+    <!-- Top Precision Scroll Progress Bar -->
+    <div id="scroll-progress" class="scroll-progress-bar"></div>
+
+    <!-- Background Canvas with Ambient Aurora Glow -->
     <div class="bg-canvas" id="particles-js">
+        <div class="ambient-glow glow-1"></div>
+        <div class="ambient-glow glow-2"></div>
+        <div class="ambient-glow glow-3"></div>
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
@@ -865,11 +871,11 @@
             </div>
             <div class="contact-wrapper">
                 <div class="contact-info reveal">
-                    <div class="info-item">
+                    <div class="info-item copy-email-item" id="copy-email-btn" title="Click to copy email">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <h4>Email</h4>
-                            <p>contact.s.selvakumar@gmail.com</p>
+                            <h4>Email <span class="copy-hint-pill"><i class="far fa-copy"></i> Click to copy</span></h4>
+                            <p id="email-address-text">contact.s.selvakumar@gmail.com</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -940,6 +946,25 @@
                 <span class="prompt">selvakumar@portfolio:~$</span>
                 <input type="text" id="terminal-input" autocomplete="off">
             </div>
+        </div>
+    </div>
+
+    <!-- Floating Luxury Quick Dock -->
+    <div id="quick-dock" class="quick-dock">
+        <a href="#home" class="dock-btn" title="Top"><i class="fas fa-arrow-up"></i></a>
+        <a href="#projects" class="dock-btn" title="Projects"><i class="fas fa-layer-group"></i></a>
+        <a href="#skills" class="dock-btn" title="Skills"><i class="fas fa-wand-magic-sparkles"></i></a>
+        <a href="#about" class="dock-btn" title="Experience"><i class="fas fa-briefcase"></i></a>
+        <a href="Selva%20kumar.S.pdf" download="Selva kumar.S.pdf" class="dock-btn dock-btn-resume" title="Download Resume"><i class="fas fa-file-pdf"></i></a>
+        <a href="#contact" class="dock-btn" title="Contact"><i class="fas fa-paper-plane"></i></a>
+    </div>
+
+    <!-- Interactive Glass Toast Notification -->
+    <div id="toast-notify" class="toast-notify">
+        <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="toast-body">
+            <span class="toast-title" id="toast-title">Email Copied!</span>
+            <span class="toast-desc" id="toast-desc">Ready to connect with Selvakumar.</span>
         </div>
     </div>
 

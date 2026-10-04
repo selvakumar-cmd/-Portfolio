@@ -611,4 +611,88 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     fetchGitHubStats();
 
+    // =========================================================
+    // 2026 ULTRA-LUXURY INTERACTIVE ENGINE (Awwwards / Linear)
+    // =========================================================
+
+    // --- A. Precision Top Scroll Progress Bar & Floating Quick Dock ---
+    const scrollProgressBar = document.getElementById('scroll-progress');
+    const quickDock = document.getElementById('quick-dock');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollHeight > 0) ? (scrollTop / scrollHeight) * 100 : 0;
+
+        if (scrollProgressBar) {
+            scrollProgressBar.style.width = scrollPercent + '%';
+        }
+
+        // Show quick dock after scrolling past hero section (300px)
+        if (quickDock) {
+            if (scrollTop > 350) {
+                quickDock.classList.add('visible');
+            } else {
+                quickDock.classList.remove('visible');
+            }
+        }
+    }, { passive: true });
+
+    // --- B. Interactive Spotlight Glow Cursor Tracker (Bento & Cards) ---
+    const spotlightCards = document.querySelectorAll('.bento-item, .project-card, .highlight-item, .skill-category');
+    spotlightCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        }, { passive: true });
+    });
+
+    // --- C. 1-Click Copy Email with Interactive Glass Toast ---
+    const copyEmailBtn = document.getElementById('copy-email-btn');
+    const toastNotify = document.getElementById('toast-notify');
+    const toastTitle = document.getElementById('toast-title');
+    const toastDesc = document.getElementById('toast-desc');
+    let toastTimeout;
+
+    function showGlassToast(title, desc) {
+        if (!toastNotify) return;
+        if (toastTitle) toastTitle.textContent = title;
+        if (toastDesc) toastDesc.textContent = desc;
+
+        toastNotify.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toastNotify.classList.remove('show');
+        }, 3200);
+    }
+
+    if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', () => {
+            const email = 'contact.s.selvakumar@gmail.com';
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(() => {
+                    showGlassToast('✨ Email Copied!', 'contact.s.selvakumar@gmail.com copied to clipboard.');
+                }).catch(() => {
+                    showGlassToast('📬 Contact Email', 'contact.s.selvakumar@gmail.com');
+                });
+            } else {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = email;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showGlassToast('✨ Email Copied!', 'contact.s.selvakumar@gmail.com copied to clipboard.');
+                } catch (e) {
+                    showGlassToast('📬 Contact Email', 'contact.s.selvakumar@gmail.com');
+                }
+                document.body.removeChild(textarea);
+            }
+        });
+    }
+
 });

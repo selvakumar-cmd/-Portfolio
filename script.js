@@ -983,5 +983,153 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // =========================================================
+    // 🎬 HERO CINEMATIC VIDEO & AURORA ENGINE
+    // =========================================================
+    const heroCanvas = document.getElementById('hero-aurora-canvas');
+    const heroSection = document.getElementById('home');
+    let heroAnimFrame = null;
+    let heroVisible = true;
+
+    if (heroCanvas && heroSection) {
+        const ctx = heroCanvas.getContext('2d');
+        let width = heroCanvas.width = heroSection.offsetWidth;
+        let height = heroCanvas.height = heroSection.offsetHeight;
+
+        window.addEventListener('resize', () => {
+            if (heroSection && heroCanvas) {
+                width = heroCanvas.width = heroSection.offsetWidth;
+                height = heroCanvas.height = heroSection.offsetHeight;
+            }
+        }, { passive: true });
+
+        // Cosmic stardust particles
+        const stars = Array.from({ length: 45 }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height * 0.75,
+            radius: Math.random() * 1.5 + 0.5,
+            alpha: Math.random() * 0.8 + 0.2,
+            speed: Math.random() * 0.02 + 0.005,
+            drift: (Math.random() - 0.5) * 0.3
+        }));
+
+        let time = 0;
+
+        function getHouseAuroraColors() {
+            if (document.body.classList.contains('house-gryffindor')) {
+                return ['rgba(220, 38, 38, 0.25)', 'rgba(212, 175, 55, 0.35)', 'rgba(245, 158, 11, 0.2)'];
+            } else if (document.body.classList.contains('house-ravenclaw')) {
+                return ['rgba(37, 99, 235, 0.25)', 'rgba(56, 189, 248, 0.35)', 'rgba(99, 102, 241, 0.2)'];
+            } else if (document.body.classList.contains('house-slytherin')) {
+                return ['rgba(5, 150, 105, 0.25)', 'rgba(52, 211, 153, 0.35)', 'rgba(16, 185, 129, 0.2)'];
+            } else if (document.body.classList.contains('house-hufflepuff')) {
+                return ['rgba(217, 119, 6, 0.25)', 'rgba(250, 204, 21, 0.35)', 'rgba(234, 179, 8, 0.2)'];
+            }
+            return ['rgba(212, 175, 55, 0.25)', 'rgba(56, 189, 248, 0.2)', 'rgba(255, 215, 0, 0.3)'];
+        }
+
+        function drawHeroAurora() {
+            if (!heroVisible) return;
+            ctx.clearRect(0, 0, width, height);
+
+            time += 0.008;
+            const colors = getHouseAuroraColors();
+
+            // Draw 3 atmospheric undulating waves
+            for (let i = 0; i < 3; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, height * 0.45);
+                
+                const grad = ctx.createLinearGradient(0, 0, width, height * 0.6);
+                grad.addColorStop(0, colors[i % colors.length]);
+                grad.addColorStop(0.5, colors[(i + 1) % colors.length]);
+                grad.addColorStop(1, 'transparent');
+                ctx.fillStyle = grad;
+
+                for (let x = 0; x <= width; x += 30) {
+                    const wave1 = Math.sin(x * 0.0025 + time + i * 1.5) * 45;
+                    const wave2 = Math.cos(x * 0.004 - time * 0.8 + i) * 25;
+                    const y = height * (0.28 + i * 0.12) + wave1 + wave2;
+                    ctx.lineTo(x, y);
+                }
+
+                ctx.lineTo(width, 0);
+                ctx.lineTo(0, 0);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            // Draw twinkling stardust
+            stars.forEach(s => {
+                s.alpha += Math.sin(time * 5 + s.x) * s.speed;
+                s.x += s.drift;
+                if (s.x < 0) s.x = width;
+                if (s.x > width) s.x = 0;
+
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 235, 180, ${Math.max(0.1, Math.min(1, s.alpha))})`;
+                ctx.shadowColor = '#ffd700';
+                ctx.shadowBlur = 6;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+
+            heroAnimFrame = requestAnimationFrame(drawHeroAurora);
+        }
+
+        // IntersectionObserver to pause when not viewing hero (battery/CPU friendly)
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                heroVisible = entry.isIntersecting;
+                if (heroVisible) {
+                    cancelAnimationFrame(heroAnimFrame);
+                    heroAnimFrame = requestAnimationFrame(drawHeroAurora);
+                }
+            });
+        }, { threshold: 0.1 });
+        heroObserver.observe(heroSection);
+
+        drawHeroAurora();
+    }
+
+    // =========================================================
+    // 🎴 MAJOR ARCANA TAROT CARDS INTERACTION
+    // =========================================================
+    const tarotCards = document.querySelectorAll('.tarot-card');
+
+    tarotCards.forEach(card => {
+        // Click/tap to flip card
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+            const rect = card.getBoundingClientRect();
+            fireWandBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, '#ffd700');
+        });
+
+        // 3D Parallax Tilt on desktop mousemove
+        if (!isMobile) {
+            card.addEventListener('mousemove', (e) => {
+                if (card.classList.contains('flipped')) return;
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const rotateX = (-y / (rect.height / 2)) * 10;
+                const rotateY = (x / (rect.width / 2)) * 10;
+                const inner = card.querySelector('.tarot-card-inner');
+                if (inner && !card.classList.contains('flipped')) {
+                    inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const inner = card.querySelector('.tarot-card-inner');
+                if (inner && !card.classList.contains('flipped')) {
+                    inner.style.transform = '';
+                }
+            });
+        }
+    });
+
 });
+
 

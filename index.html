@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -283,6 +283,7 @@
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#certifications">Tarot Arcana</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -309,8 +310,36 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Floating Hogwarts Candles -->
+    <!-- Hero Section with Cinematic Video Loop & Floating Great Hall Candles -->
     <section id="home" class="hero">
+        <!-- Cinematic Background Video Loop -->
+        <div class="hero-cinematic-bg" aria-hidden="true">
+            <video class="hero-bg-video" autoplay muted loop playsinline preload="auto">
+                <source src="hero-bg.mp4" type="video/mp4">
+            </video>
+            <!-- Atmospheric Aurora Canvas -->
+            <canvas id="hero-aurora-canvas" class="hero-aurora-canvas"></canvas>
+            <!-- Hogwarts Castle Silhouette Horizon -->
+            <div class="hogwarts-castle-horizon">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="castle-svg">
+                    <path fill="currentColor" d="M0,320 L0,240 L40,240 L50,190 L60,190 L65,140 L70,140 L75,100 L80,100 L82,60 L85,100 L90,100 L95,140 L100,140 L105,190 L115,190 L125,240 L170,240 L180,210 L195,210 L200,170 L210,170 L215,120 L220,120 L225,170 L235,170 L240,210 L255,210 L265,240 L310,240 L320,180 L335,180 L345,130 L350,80 L355,130 L365,180 L380,180 L390,240 L450,240 L460,200 L470,200 L480,150 L485,110 L490,150 L500,200 L510,200 L520,240 L580,240 L590,170 L600,170 L610,110 L615,60 L620,110 L630,170 L640,170 L650,240 L720,240 L730,190 L745,190 L755,140 L760,90 L765,140 L775,190 L790,190 L800,240 L870,240 L885,180 L900,180 L910,130 L915,70 L920,130 L930,180 L945,180 L960,240 L1020,240 L1035,200 L1045,200 L1055,150 L1060,100 L1065,150 L1075,200 L1085,200 L1100,240 L1160,240 L1175,170 L1190,170 L1200,120 L1205,70 L1210,120 L1220,170 L1235,170 L1250,240 L1310,240 L1325,190 L1340,190 L1350,140 L1355,90 L1360,140 L1370,190 L1385,190 L1400,240 L1440,240 L1440,320 Z"></path>
+                </svg>
+                <!-- Glowing Castle Spire Window Lights -->
+                <div class="castle-lights">
+                    <span class="castle-light cl-1"></span>
+                    <span class="castle-light cl-2"></span>
+                    <span class="castle-light cl-3"></span>
+                    <span class="castle-light cl-4"></span>
+                    <span class="castle-light cl-5"></span>
+                    <span class="castle-light cl-6"></span>
+                    <span class="castle-light cl-7"></span>
+                </div>
+            </div>
+            <!-- Glassmorphism Vignette Overlay -->
+            <div class="hero-cinematic-overlay"></div>
+            <div class="hero-cinematic-vignette"></div>
+        </div>
+
         <!-- Floating Great Hall Magical Candles -->
         <div class="floating-candles-layer" aria-hidden="true">
             <div class="hogwarts-candle candle-1"><div class="candle-flame"></div></div>
@@ -459,9 +488,13 @@
                                 <i class="fas fa-file-word" style="color: #2B579A; font-size: 1.2rem;"></i>
                                 <strong style="color: var(--text-primary); font-size: 0.95rem;">Microsoft Word Advanced Level</strong>
                             </div>
-                            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-left: 28px; margin-top: 4px;">Microsoft & Naan Mudhalvan â€” Professional Document Structuring</p>
+                            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-left: 28px; margin-top: 4px;">Microsoft & Naan Mudhalvan — Professional Document Structuring</p>
                         </div>
                     </div>
+                    <a href="#certifications" class="bento-tarot-link">
+                        <span><i class="fas fa-hat-wizard"></i> Consult Major Arcana Deck</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
 
                 <!-- GitHub Stats Card -->
@@ -501,6 +534,339 @@
 
                     <a href="https://github.com/selvakumar-cmd" target="_blank" rel="noopener noreferrer" class="github-btn">View Profile <i class="fas fa-external-link-alt"></i></a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section — Animated Arcane Tarot Cards -->
+    <section id="certifications" class="section tarot-section">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Arcane Credentials</span>
+                <h2 class="scramble">Major Arcana of Mastery</h2>
+                <div class="line"></div>
+                <p class="tarot-section-desc">
+                    <span class="tarot-sparkle-icon">🎴</span>
+                    Hover or tap any Tarot card to flip the seal and reveal its certified powers.
+                </p>
+            </div>
+
+            <div class="tarot-deck">
+                <!-- Tarot Card 0: The Certified One — Django Master -->
+                <div class="tarot-card reveal" data-card="django">
+                    <div class="tarot-card-inner">
+                        <!-- Card Front -->
+                        <div class="tarot-front">
+                            <div class="tarot-foil-border">
+                                <span class="tarot-corner tl">✦</span>
+                                <span class="tarot-corner tr">✦</span>
+                                <span class="tarot-corner bl">✦</span>
+                                <span class="tarot-corner br">✦</span>
+                                <div class="tarot-numeral">0</div>
+                                <div class="tarot-art-wrap">
+                                    <div class="tarot-art-circle art-python">
+                                        <i class="fab fa-python tarot-main-icon"></i>
+                                        <div class="tarot-sunburst"></div>
+                                        <span class="tarot-sigil sigil-1">ᚱ</span>
+                                        <span class="tarot-sigil sigil-2">ᚦ</span>
+                                        <span class="tarot-sigil sigil-3">ᚨ</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-banner">
+                                    <h3 class="tarot-title">THE CERTIFIED ONE</h3>
+                                    <p class="tarot-subtitle">Django & Python Master</p>
+                                </div>
+                                <div class="tarot-archetype-tag">Full-Stack Architect</div>
+                                <div class="tarot-prompt">
+                                    <i class="fas fa-hand-sparkles"></i> <span>Hover to Consult Oracle</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Back -->
+                        <div class="tarot-back">
+                            <div class="tarot-parchment-border">
+                                <div class="tarot-back-header">
+                                    <div class="tarot-seal-emblem">🐍</div>
+                                    <div class="tarot-back-num">ARCANUM 0</div>
+                                </div>
+                                <h4 class="tarot-back-title">Python & Django Architecture</h4>
+                                <div class="tarot-oracle-text">
+                                    "A master of web sorcery who binds relational databases, scalable APIs, and automated SLA workflows into unified digital realms."
+                                </div>
+                                <div class="tarot-specs">
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Domain:</span>
+                                        <span class="spec-val">Full Stack Web Engineering</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Mastery:</span>
+                                        <span class="spec-val">Django ORM, RBAC & SMTP Engine</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Credential:</span>
+                                        <span class="spec-val highlight-gold">Full Stack Certified</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-verified-badge">
+                                    <i class="fas fa-certificate"></i> Verified System Artisan
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarot Card I: The Magician — React.js Artisan -->
+                <div class="tarot-card reveal" data-card="react">
+                    <div class="tarot-card-inner">
+                        <!-- Card Front -->
+                        <div class="tarot-front">
+                            <div class="tarot-foil-border">
+                                <span class="tarot-corner tl">✦</span>
+                                <span class="tarot-corner tr">✦</span>
+                                <span class="tarot-corner bl">✦</span>
+                                <span class="tarot-corner br">✦</span>
+                                <div class="tarot-numeral">I</div>
+                                <div class="tarot-art-wrap">
+                                    <div class="tarot-art-circle art-react">
+                                        <i class="fab fa-react tarot-main-icon"></i>
+                                        <div class="tarot-sunburst"></div>
+                                        <span class="tarot-sigil sigil-1">⚛</span>
+                                        <span class="tarot-sigil sigil-2">ᛏ</span>
+                                        <span class="tarot-sigil sigil-3">ᛒ</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-banner">
+                                    <h3 class="tarot-title">THE MAGICIAN</h3>
+                                    <p class="tarot-subtitle">React.js Artisan</p>
+                                </div>
+                                <div class="tarot-archetype-tag">Interactive UI Sorcerer</div>
+                                <div class="tarot-prompt">
+                                    <i class="fas fa-hand-sparkles"></i> <span>Hover to Consult Oracle</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Back -->
+                        <div class="tarot-back">
+                            <div class="tarot-parchment-border">
+                                <div class="tarot-back-header">
+                                    <div class="tarot-seal-emblem">⚛️</div>
+                                    <div class="tarot-back-num">ARCANUM I</div>
+                                </div>
+                                <h4 class="tarot-back-title">React.js Development</h4>
+                                <div class="tarot-oracle-text">
+                                    "Transforms static data into living, reactive interfaces through state alchemy and component lifecycle mastery."
+                                </div>
+                                <div class="tarot-specs">
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Issuer:</span>
+                                        <span class="spec-val">Camp Tech Institute</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Proficiency:</span>
+                                        <span class="spec-val">SPA Architecture, Hooks & State</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Validation:</span>
+                                        <span class="spec-val highlight-gold">Certified Practitioner</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-verified-badge">
+                                    <i class="fas fa-award"></i> Verified Credential
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarot Card IV: The Architect — Core Java Engine -->
+                <div class="tarot-card reveal" data-card="java">
+                    <div class="tarot-card-inner">
+                        <!-- Card Front -->
+                        <div class="tarot-front">
+                            <div class="tarot-foil-border">
+                                <span class="tarot-corner tl">✦</span>
+                                <span class="tarot-corner tr">✦</span>
+                                <span class="tarot-corner bl">✦</span>
+                                <span class="tarot-corner br">✦</span>
+                                <div class="tarot-numeral">IV</div>
+                                <div class="tarot-art-wrap">
+                                    <div class="tarot-art-circle art-java">
+                                        <i class="fab fa-java tarot-main-icon"></i>
+                                        <div class="tarot-sunburst"></div>
+                                        <span class="tarot-sigil sigil-1">☕</span>
+                                        <span class="tarot-sigil sigil-2">ᚷ</span>
+                                        <span class="tarot-sigil sigil-3">ᛗ</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-banner">
+                                    <h3 class="tarot-title">THE ARCHITECT</h3>
+                                    <p class="tarot-subtitle">Core Java Engine</p>
+                                </div>
+                                <div class="tarot-archetype-tag">Enterprise Foundation</div>
+                                <div class="tarot-prompt">
+                                    <i class="fas fa-hand-sparkles"></i> <span>Hover to Consult Oracle</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Back -->
+                        <div class="tarot-back">
+                            <div class="tarot-parchment-border">
+                                <div class="tarot-back-header">
+                                    <div class="tarot-seal-emblem">☕</div>
+                                    <div class="tarot-back-num">ARCANUM IV</div>
+                                </div>
+                                <h4 class="tarot-back-title">Core Java Mastery</h4>
+                                <div class="tarot-oracle-text">
+                                    "Commands strict object-oriented hierarchies, robust multithreaded pipelines, and unbreakable type safety."
+                                </div>
+                                <div class="tarot-specs">
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Issuer:</span>
+                                        <span class="spec-val">Tech Force Institute</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Proficiency:</span>
+                                        <span class="spec-val">OOPs, Collections & JVM Core</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Validation:</span>
+                                        <span class="spec-val highlight-gold">Certified Professional</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-verified-badge">
+                                    <i class="fas fa-shield-alt"></i> Verified Credential
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarot Card X: The Alchemist — Advanced Excel -->
+                <div class="tarot-card reveal" data-card="excel">
+                    <div class="tarot-card-inner">
+                        <!-- Card Front -->
+                        <div class="tarot-front">
+                            <div class="tarot-foil-border">
+                                <span class="tarot-corner tl">✦</span>
+                                <span class="tarot-corner tr">✦</span>
+                                <span class="tarot-corner bl">✦</span>
+                                <span class="tarot-corner br">✦</span>
+                                <div class="tarot-numeral">X</div>
+                                <div class="tarot-art-wrap">
+                                    <div class="tarot-art-circle art-excel">
+                                        <i class="fas fa-file-excel tarot-main-icon"></i>
+                                        <div class="tarot-sunburst"></div>
+                                        <span class="tarot-sigil sigil-1">📊</span>
+                                        <span class="tarot-sigil sigil-2">ᛞ</span>
+                                        <span class="tarot-sigil sigil-3">ᛚ</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-banner">
+                                    <h3 class="tarot-title">THE ALCHEMIST</h3>
+                                    <p class="tarot-subtitle">Excel Data Diviner</p>
+                                </div>
+                                <div class="tarot-archetype-tag">Quantitative Intelligence</div>
+                                <div class="tarot-prompt">
+                                    <i class="fas fa-hand-sparkles"></i> <span>Hover to Consult Oracle</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Back -->
+                        <div class="tarot-back">
+                            <div class="tarot-parchment-border">
+                                <div class="tarot-back-header">
+                                    <div class="tarot-seal-emblem">📊</div>
+                                    <div class="tarot-back-num">ARCANUM X</div>
+                                </div>
+                                <h4 class="tarot-back-title">Microsoft Excel Advanced</h4>
+                                <div class="tarot-oracle-text">
+                                    "Decodes chaotic matrices of numbers into crystal clarity with automated lookups, financial models, and pivot divination."
+                                </div>
+                                <div class="tarot-specs">
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Issuer:</span>
+                                        <span class="spec-val">Microsoft & Naan Mudhalvan</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Proficiency:</span>
+                                        <span class="spec-val">Advanced Data Modeling & Analytics</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Validation:</span>
+                                        <span class="spec-val highlight-gold">Advanced Level Honors</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-verified-badge">
+                                    <i class="fas fa-gem"></i> Verified Credential
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarot Card XVII: The Visionary — Executive Visual Suite -->
+                <div class="tarot-card reveal" data-card="office">
+                    <div class="tarot-card-inner">
+                        <!-- Card Front -->
+                        <div class="tarot-front">
+                            <div class="tarot-foil-border">
+                                <span class="tarot-corner tl">✦</span>
+                                <span class="tarot-corner tr">✦</span>
+                                <span class="tarot-corner bl">✦</span>
+                                <span class="tarot-corner br">✦</span>
+                                <div class="tarot-numeral">XVII</div>
+                                <div class="tarot-art-wrap">
+                                    <div class="tarot-art-circle art-office">
+                                        <i class="fas fa-file-powerpoint tarot-main-icon"></i>
+                                        <div class="tarot-sunburst"></div>
+                                        <span class="tarot-sigil sigil-1">📜</span>
+                                        <span class="tarot-sigil sigil-2">ᛉ</span>
+                                        <span class="tarot-sigil sigil-3">ᛋ</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-banner">
+                                    <h3 class="tarot-title">THE VISIONARY</h3>
+                                    <p class="tarot-subtitle">PowerPoint & Word Master</p>
+                                </div>
+                                <div class="tarot-archetype-tag">Visual Storytelling</div>
+                                <div class="tarot-prompt">
+                                    <i class="fas fa-hand-sparkles"></i> <span>Hover to Consult Oracle</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Back -->
+                        <div class="tarot-back">
+                            <div class="tarot-parchment-border">
+                                <div class="tarot-back-header">
+                                    <div class="tarot-seal-emblem">🌟</div>
+                                    <div class="tarot-back-num">ARCANUM XVII</div>
+                                </div>
+                                <h4 class="tarot-back-title">PowerPoint & Word Advanced</h4>
+                                <div class="tarot-oracle-text">
+                                    "Synthesizes complex technical architectures into compelling executive slide presentations and formal documentation."
+                                </div>
+                                <div class="tarot-specs">
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Issuer:</span>
+                                        <span class="spec-val">Microsoft & Naan Mudhalvan</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Proficiency:</span>
+                                        <span class="spec-val">Visual Asset Design & Documentation</span>
+                                    </div>
+                                    <div class="tarot-spec-row">
+                                        <span class="spec-label">Validation:</span>
+                                        <span class="spec-val highlight-gold">Advanced Level Honors</span>
+                                    </div>
+                                </div>
+                                <div class="tarot-verified-badge">
+                                    <i class="fas fa-star"></i> Verified Credential
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1070,6 +1436,7 @@
         <a href="#projects" class="dock-btn" title="Projects"><i class="fas fa-layer-group"></i></a>
         <a href="#skills" class="dock-btn" title="Skills"><i class="fas fa-wand-magic-sparkles"></i></a>
         <a href="#about" class="dock-btn" title="Experience"><i class="fas fa-briefcase"></i></a>
+        <a href="#certifications" class="dock-btn" title="Tarot Arcana"><i class="fas fa-scroll"></i></a>
         <button type="button" id="dock-sorting-btn" class="dock-btn dock-btn-hat" title="Hogwarts Sorting Hat"><i class="fas fa-hat-wizard"></i></button>
         <a href="Selva%20kumar.S.pdf" download="Selva kumar.S.pdf" class="dock-btn dock-btn-resume" title="Download Resume"><i class="fas fa-file-pdf"></i></a>
         <a href="#contact" class="dock-btn" title="Contact"><i class="fas fa-paper-plane"></i></a>

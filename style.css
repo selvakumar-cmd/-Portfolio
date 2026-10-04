@@ -3705,3 +3705,487 @@ body.light-mode .letter-from { color: #b8860b; }
 body.light-mode .spell-tag { background: rgba(184,134,11,0.1); border-color: rgba(184,134,11,0.4); color: #b8860b; }
 body.light-mode .letter-title { color: #92400e; text-shadow: none; }
 body.light-mode .letter-subtitle { color: #b45309; }
+
+/* =====================================================
+   🎬 FEATURE 3: CINEMATIC HERO VIDEO LOOP BACKGROUND
+   ===================================================== */
+.hero-cinematic-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.38;
+    filter: brightness(0.65) contrast(1.25) saturate(1.2);
+    transition: opacity 1s ease;
+}
+
+.hero-aurora-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: screen;
+    opacity: 0.65;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hogwarts-castle-horizon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+    z-index: 2;
+    pointer-events: none;
+    color: #06050b;
+    opacity: 0.92;
+}
+
+.castle-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 -4px 18px rgba(212, 175, 55, 0.15));
+}
+
+.castle-lights {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.castle-light {
+    position: absolute;
+    width: 3px;
+    height: 5px;
+    background: #ffd700;
+    border-radius: 1px;
+    box-shadow: 0 0 8px #ffd700, 0 0 16px rgba(255, 215, 0, 0.8);
+    animation: castleFlicker 3s ease-in-out infinite alternate;
+}
+
+.cl-1 { left: 5.7%; bottom: 68px; animation-delay: 0.2s; }
+.cl-2 { left: 15%; bottom: 58px; animation-delay: 1.1s; }
+.cl-3 { left: 24.3%; bottom: 82px; animation-delay: 0.7s; }
+.cl-4 { left: 42.7%; bottom: 95px; animation-delay: 1.8s; }
+.cl-5 { left: 63.5%; bottom: 78px; animation-delay: 0.4s; }
+.cl-6 { left: 83.7%; bottom: 88px; animation-delay: 1.4s; }
+.cl-7 { left: 94.1%; bottom: 62px; animation-delay: 0.9s; }
+
+@keyframes castleFlicker {
+    0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 4px #ffd700); }
+    50% { opacity: 0.35; filter: drop-shadow(0 0 1px #ffd700); }
+}
+
+.hero-cinematic-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7, 5, 12, 0.6) 0%, rgba(7, 5, 12, 0.35) 45%, rgba(7, 5, 12, 0.75) 85%, #08070b 100%);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    z-index: 3;
+}
+
+.hero-cinematic-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.75) 100%);
+    z-index: 3;
+}
+
+/* =====================================================
+   🎴 FEATURE 6: TAROT CARD STYLE CERTIFICATIONS SECTION
+   ===================================================== */
+.tarot-section {
+    position: relative;
+    padding: 100px 0;
+    background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+}
+
+.tarot-section-desc {
+    margin-top: 14px;
+    color: var(--text-secondary);
+    font-family: 'Cinzel', serif;
+    font-style: italic;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.tarot-sparkle-icon {
+    font-size: 1.4rem;
+    animation: sealPulse 3s ease-in-out infinite;
+}
+
+.tarot-deck {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+    margin-top: 50px;
+    perspective: 1200px;
+}
+
+.tarot-card {
+    height: 450px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 16px;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.tarot-card:hover {
+    transform: translateY(-10px);
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.35));
+}
+
+.tarot-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 16px;
+}
+
+.tarot-card:hover .tarot-card-inner,
+.tarot-card.flipped .tarot-card-inner {
+    transform: rotateY(180deg);
+}
+
+.tarot-front,
+.tarot-back {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarot-front {
+    background: linear-gradient(155deg, #0d0a06 0%, #171209 45%, #080604 100%);
+    border: 2px solid #d4af37;
+    box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.tarot-foil-border {
+    position: relative;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    margin: 8px;
+    border: 1px dashed rgba(212, 175, 55, 0.45);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.tarot-corner {
+    position: absolute;
+    font-size: 0.75rem;
+    color: #ffd700;
+    line-height: 1;
+}
+.tarot-corner.tl { top: 4px; left: 4px; }
+.tarot-corner.tr { top: 4px; right: 4px; }
+.tarot-corner.bl { bottom: 4px; left: 4px; }
+.tarot-corner.br { bottom: 4px; right: 4px; }
+
+.tarot-numeral {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #ffd700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+.tarot-art-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.tarot-art-circle {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 2px solid rgba(212, 175, 55, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(0, 0, 0, 0.7) 75%);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+    transition: transform 0.4s ease;
+}
+
+.tarot-card:hover .tarot-art-circle {
+    transform: scale(1.05);
+}
+
+.art-python { border-color: rgba(56, 189, 248, 0.6); box-shadow: 0 0 25px rgba(56, 189, 248, 0.25); }
+.art-react { border-color: rgba(97, 218, 251, 0.6); box-shadow: 0 0 25px rgba(97, 218, 251, 0.25); }
+.art-java { border-color: rgba(248, 152, 32, 0.6); box-shadow: 0 0 25px rgba(248, 152, 32, 0.25); }
+.art-excel { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 25px rgba(16, 185, 129, 0.25); }
+.art-office { border-color: rgba(220, 38, 38, 0.6); box-shadow: 0 0 25px rgba(220, 38, 38, 0.25); }
+
+.tarot-main-icon {
+    font-size: 2.8rem;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.art-python .tarot-main-icon { color: #38bdf8; }
+.art-react .tarot-main-icon { color: #61dafb; }
+.art-java .tarot-main-icon { color: #f89820; }
+.art-excel .tarot-main-icon { color: #10b981; }
+.art-office .tarot-main-icon { color: #f43f5e; }
+
+.tarot-sigil {
+    position: absolute;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: rgba(212, 175, 55, 0.65);
+    user-select: none;
+}
+.sigil-1 { top: 6px; }
+.sigil-2 { bottom: 8px; left: 14px; }
+.sigil-3 { bottom: 8px; right: 14px; }
+
+.tarot-banner {
+    margin-top: 4px;
+}
+
+.tarot-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffd700;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
+}
+
+.tarot-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.84rem;
+    color: rgba(220, 210, 185, 0.85);
+    margin: 0;
+}
+
+.tarot-archetype-tag {
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #ffd700;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+.tarot-prompt {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: rgba(212, 175, 55, 0.6);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tarot-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(160deg, #130f09 0%, #1f180d 50%, #100c07 100%);
+    border: 2px solid #d4af37;
+    box-shadow: inset 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+.tarot-parchment-border {
+    position: relative;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    margin: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 12px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(212, 175, 55, 0.03) 24px, rgba(212, 175, 55, 0.03) 25px);
+}
+
+.tarot-back-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    padding-bottom: 8px;
+}
+
+.tarot-seal-emblem {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+}
+
+.tarot-back-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: #d4af37;
+    font-weight: 700;
+}
+
+.tarot-back-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    color: #ffd700;
+    margin: 10px 0 6px;
+    line-height: 1.3;
+}
+
+.tarot-oracle-text {
+    font-family: 'Outfit', sans-serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: rgba(220, 210, 185, 0.9);
+    line-height: 1.6;
+    border-left: 2px solid rgba(212, 175, 55, 0.4);
+    padding-left: 10px;
+    margin-bottom: 12px;
+}
+
+.tarot-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.tarot-spec-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    border-bottom: 1px dashed rgba(212, 175, 55, 0.15);
+    padding-bottom: 4px;
+}
+
+.spec-label {
+    color: rgba(212, 175, 55, 0.65);
+    font-family: 'Cinzel', serif;
+}
+
+.spec-val {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+    text-align: right;
+}
+
+.spec-val.highlight-gold {
+    color: #ffd700;
+    text-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+}
+
+.tarot-verified-badge {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(212, 175, 55, 0.05));
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 8px;
+    padding: 7px 10px;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #ffd700;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Bento cert link */
+.bento-tarot-link {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.14), rgba(212, 175, 55, 0.04));
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    padding: 10px 16px;
+    border-radius: 10px;
+    color: #ffd700;
+    font-family: 'Cinzel', serif;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.bento-tarot-link:hover {
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    color: #0b0700;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* House Color Themes for Tarot Cards */
+body.house-gryffindor .tarot-card .tarot-front,
+body.house-gryffindor .tarot-card .tarot-back { border-color: rgba(220, 38, 38, 0.6); }
+body.house-gryffindor .tarot-archetype-tag { border-color: rgba(220, 38, 38, 0.5); color: #f87171; }
+
+body.house-ravenclaw .tarot-card .tarot-front,
+body.house-ravenclaw .tarot-card .tarot-back { border-color: rgba(56, 189, 248, 0.6); }
+body.house-ravenclaw .tarot-archetype-tag { border-color: rgba(56, 189, 248, 0.5); color: #7dd3fc; }
+
+body.house-slytherin .tarot-card .tarot-front,
+body.house-slytherin .tarot-card .tarot-back { border-color: rgba(16, 185, 129, 0.6); }
+body.house-slytherin .tarot-archetype-tag { border-color: rgba(16, 185, 129, 0.5); color: #6ee7b7; }
+
+body.house-hufflepuff .tarot-card .tarot-front,
+body.house-hufflepuff .tarot-card .tarot-back { border-color: rgba(234, 179, 8, 0.6); }
+body.house-hufflepuff .tarot-archetype-tag { border-color: rgba(234, 179, 8, 0.5); color: #fde047; }
+
+@media (max-width: 768px) {
+    .tarot-deck { grid-template-columns: 1fr; gap: 24px; }
+    .tarot-card { height: 420px; }
+    .hogwarts-castle-horizon { height: 90px; }
+}

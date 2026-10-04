@@ -3809,7 +3809,7 @@ body.light-mode .letter-subtitle { color: #b45309; }
 }
 
 .tarot-card {
-    height: 450px;
+    height: 390px;
     position: relative;
     cursor: default;
     border-radius: 16px;
@@ -4162,7 +4162,7 @@ body.house-hufflepuff .tarot-archetype-tag { border-color: rgba(234, 179, 8, 0.5
         margin: 35px auto 0;
     }
     .tarot-card {
-        height: 420px;
+        height: 380px;
     }
     .tarot-prompt span {
         font-size: 0.72rem;

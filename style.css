@@ -3104,6 +3104,8 @@ body.light-mode .toast-title {
     border-radius: 20px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.2);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: radial-gradient(circle at 50% 35%, rgba(45, 36, 22, 0.9) 0%, rgba(14, 11, 18, 0.98) 75%);
+    overflow: hidden;
 }
 
 .arcane-frame:hover {
@@ -3808,7 +3810,7 @@ body.light-mode .letter-subtitle { color: #b45309; }
 .tarot-card {
     height: 450px;
     position: relative;
-    cursor: pointer;
+    cursor: default;
     border-radius: 16px;
     filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
@@ -3823,28 +3825,22 @@ body.light-mode .letter-subtitle { color: #b45309; }
     position: relative;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
     border-radius: 16px;
 }
 
-.tarot-card:hover .tarot-card-inner,
-.tarot-card.flipped .tarot-card-inner {
-    transform: rotateY(180deg);
-}
-
-.tarot-front,
-.tarot-back {
+.tarot-front {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border-radius: 16px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+}
+
+.tarot-back {
+    display: none;
 }
 
 .tarot-front {

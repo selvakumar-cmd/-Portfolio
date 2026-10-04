@@ -1093,43 +1093,6 @@ document.addEventListener('DOMContentLoaded', () => {
         drawHeroAurora();
     }
 
-    // =========================================================
-    // 🎴 MAJOR ARCANA TAROT CARDS INTERACTION
-    // =========================================================
-    const tarotCards = document.querySelectorAll('.tarot-card');
-
-    tarotCards.forEach(card => {
-        // Click/tap to flip card
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-            const rect = card.getBoundingClientRect();
-            fireWandBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, '#ffd700');
-        });
-
-        // 3D Parallax Tilt on desktop mousemove
-        if (!isMobile) {
-            card.addEventListener('mousemove', (e) => {
-                if (card.classList.contains('flipped')) return;
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                const rotateX = (-y / (rect.height / 2)) * 10;
-                const rotateY = (x / (rect.width / 2)) * 10;
-                const inner = card.querySelector('.tarot-card-inner');
-                if (inner && !card.classList.contains('flipped')) {
-                    inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                }
-            });
-
-            card.addEventListener('mouseleave', () => {
-                const inner = card.querySelector('.tarot-card-inner');
-                if (inner && !card.classList.contains('flipped')) {
-                    inner.style.transform = '';
-                }
-            });
-        }
-    });
-
 });
 
 

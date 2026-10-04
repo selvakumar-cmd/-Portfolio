@@ -3719,19 +3719,28 @@ body.light-mode .letter-subtitle { color: #b45309; }
     z-index: 0;
 }
 
-.hero-bg-video {
+.hogwarts-hero-backdrop {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
+    inset: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    overflow: hidden;
+}
+
+.hogwarts-castle-bg-img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    opacity: 0.38;
-    filter: brightness(0.65) contrast(1.25) saturate(1.2);
-    transition: opacity 1s ease;
+    object-position: center 32%;
+    filter: brightness(0.68) contrast(1.18) saturate(1.12);
+    animation: hogwartsCinematicDrift 28s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes hogwartsCinematicDrift {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.05) translate(-1.2%, -0.8%); }
+    100% { transform: scale(1.02) translate(1%, -0.4%); }
 }
 
 .hero-aurora-canvas {
@@ -3740,60 +3749,9 @@ body.light-mode .letter-subtitle { color: #b45309; }
     width: 100%;
     height: 100%;
     mix-blend-mode: screen;
-    opacity: 0.65;
+    opacity: 0.55;
     pointer-events: none;
     z-index: 1;
-}
-
-.hogwarts-castle-horizon {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 130px;
-    z-index: 2;
-    pointer-events: none;
-    color: #06050b;
-    opacity: 0.92;
-}
-
-.castle-svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-    filter: drop-shadow(0 -4px 18px rgba(212, 175, 55, 0.15));
-}
-
-.castle-lights {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.castle-light {
-    position: absolute;
-    width: 3px;
-    height: 5px;
-    background: #ffd700;
-    border-radius: 1px;
-    box-shadow: 0 0 8px #ffd700, 0 0 16px rgba(255, 215, 0, 0.8);
-    animation: castleFlicker 3s ease-in-out infinite alternate;
-}
-
-.cl-1 { left: 5.7%; bottom: 68px; animation-delay: 0.2s; }
-.cl-2 { left: 15%; bottom: 58px; animation-delay: 1.1s; }
-.cl-3 { left: 24.3%; bottom: 82px; animation-delay: 0.7s; }
-.cl-4 { left: 42.7%; bottom: 95px; animation-delay: 1.8s; }
-.cl-5 { left: 63.5%; bottom: 78px; animation-delay: 0.4s; }
-.cl-6 { left: 83.7%; bottom: 88px; animation-delay: 1.4s; }
-.cl-7 { left: 94.1%; bottom: 62px; animation-delay: 0.9s; }
-
-@keyframes castleFlicker {
-    0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 4px #ffd700); }
-    50% { opacity: 0.35; filter: drop-shadow(0 0 1px #ffd700); }
 }
 
 .hero-cinematic-overlay {

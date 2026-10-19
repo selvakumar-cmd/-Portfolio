@@ -15,13 +15,13 @@
     --accent-secondary: #b8860b; /* Dark Goldenrod */
     --accent-gradient: linear-gradient(135deg, #e6c55c 0%, #b8860b 100%);
 
-    /* Card surfaces */
-    --glass-bg: #0d0d0d; /* Solid dark card, NOT transparent */
-    --glass-border: #222222; /* Very thin crisp border */
+    /* Card surfaces — Luxury Golden Glassmorphism */
+    --glass-bg: rgba(14, 12, 18, 0.72); /* Translucent smoked dark obsidian */
+    --glass-border: rgba(212, 175, 55, 0.22); /* Champagne gold 1px glass border */
 
-    /* Premium shadow (subtle, not neon) */
-    --glass-shadow: 0 10px 35px rgba(0, 0, 0, 0.55);
-    --glow-color: rgba(212, 175, 55, 0.18);
+    /* Specular glass shadow with top edge inner light */
+    --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 20px rgba(212, 175, 55, 0.04);
+    --glow-color: rgba(212, 175, 55, 0.25);
 
     /* Spacing */
     --section-padding: 120px 0;
@@ -164,8 +164,12 @@ body.light-mode {
 
 /* Light Mode — Nav bar */
 body.light-mode #main-nav.scrolled {
-    background: rgba(239, 235, 228, 0.95);
-    border-bottom: 1px solid rgba(30, 41, 59, 0.08);
+    background: rgba(10, 9, 13, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    padding: 14px 0;
 }
 
 /* Light Mode — Logo & Links */
@@ -217,11 +221,14 @@ body.light-mode .skill-category,
 body.light-mode .project-card,
 body.light-mode .achievement-card,
 body.light-mode .highlight-item {
-    background: rgba(255, 255, 255, 0.92);
-    border-color: rgba(30, 41, 59, 0.08);
-    box-shadow: 0 6px 20px rgba(30, 41, 59, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition);
 }
 
 /* Light Mode — Card Hover Overrides */
@@ -1108,9 +1115,12 @@ body.light-mode .global-remote-badge i {
 
 .bento-item {
     background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 30px;
+    box-shadow: var(--glass-shadow);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
     position: relative;
     overflow: hidden;
@@ -1415,13 +1425,16 @@ body.light-mode .global-remote-badge i {
 }
 
 .skill-tag {
-    background: var(--bg-dark);
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 8px 18px;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 500;
-    border: 1px solid var(--glass-border);
-    transition: var(--transition);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .skill-tag i {
@@ -1430,8 +1443,11 @@ body.light-mode .global-remote-badge i {
 }
 
 .skill-tag:hover {
-    color: var(--accent-primary);
-    border-color: var(--accent-primary);
+    color: #ffd700;
+    background: rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
 }
 
 /* ---- Animated Proficiency Bars ---- */
@@ -2228,8 +2244,18 @@ footer {
     }
     /* Proficiency bars full width */
     .skills-chart-container {
-        padding: 20px;
-    }
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    box-shadow: var(--glass-shadow);
+}
 }
 
 /* --- Large Mobile (480px–767px) --- */
@@ -2263,9 +2289,19 @@ footer {
         gap: 8px;
     }
     .terminal-window {
-        width: 100%;
-        height: 55vh;
-    }
+    width: 90%;
+    max-width: 800px;
+    background: rgba(14, 12, 18, 0.88);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    font-family: 'Courier New', Courier, monospace;
+    transform: translateY(50px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
     .terminal-body {
         height: 240px;
     }
@@ -2395,8 +2431,9 @@ footer {
     transform: translateY(0);
 }
 .terminal-header {
-    background: #323233;
-    padding: 10px;
+    background: rgba(24, 20, 30, 0.85);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 12px 16px;
     display: flex;
     align-items: center;
 }
@@ -2891,16 +2928,16 @@ body.light-mode .terminal-window-inline {
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background: rgba(15, 15, 18, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(212, 175, 55, 0.25);
+    background: rgba(12, 10, 16, 0.72);
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border: 1px solid rgba(212, 175, 55, 0.35);
     border-radius: 999px;
     padding: 8px 14px;
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.25);
     z-index: 9990;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
     opacity: 0;
@@ -3158,14 +3195,18 @@ body.light-mode .toast-title {
 /* Grimoire Interactive Card Highlights */
 .grimoire-card, .skill-category, .project-card, .bento-item {
     position: relative;
-    border: 1px solid rgba(212, 175, 55, 0.18);
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.08) 0%, rgba(13, 13, 13, 0.95) 70%);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.12) 0%, rgba(16, 14, 20, 0.72) 70%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: var(--glass-shadow);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .grimoire-card:hover, .skill-category:hover, .project-card:hover, .bento-item:hover {
-    border-color: rgba(212, 175, 55, 0.5);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.65);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transform: translateY(-8px);
 }
 
 /* Lumos Wand Particle Trail */
@@ -3311,14 +3352,16 @@ body.light-mode .toast-title {
 
 .sorting-hat-card {
     position: relative;
-    background: #0f0f13;
-    border: 1.5px solid rgba(212, 175, 55, 0.5);
-    border-radius: 20px;
+    background: rgba(15, 13, 19, 0.85);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1.5px solid rgba(212, 175, 55, 0.45);
+    border-radius: 24px;
     max-width: 520px;
     width: 100%;
     padding: 36px 30px;
     text-align: center;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.25);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transform: scale(0.92) translateY(20px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -3642,11 +3685,14 @@ body.house-hufflepuff {
 }
 .letter-paper {
     position: relative;
-    background: linear-gradient(160deg, #0f0b05 0%, #130d06 30%, #0c0803 60%, #111008 100%);
-    border: 1px solid rgba(212,175,55,0.35);
+    background: linear-gradient(160deg, rgba(18, 13, 7, 0.78) 0%, rgba(22, 16, 9, 0.72) 30%, rgba(14, 10, 5, 0.84) 60%, rgba(18, 15, 8, 0.9) 100%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(212, 175, 55, 0.32);
     border-top: none;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 14px 14px;
     padding: 60px 28px 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 25px rgba(212, 175, 55, 0.04);
     overflow: hidden;
     z-index: 1;
 }
@@ -3842,9 +3888,17 @@ body.light-mode .letter-subtitle { color: #b45309; }
 
 
 .tarot-front {
-    background: linear-gradient(155deg, #0d0a06 0%, #171209 45%, #080604 100%);
-    border: 2px solid #d4af37;
-    box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.15);
+    background: linear-gradient(155deg, rgba(18, 14, 10, 0.74) 0%, rgba(26, 20, 13, 0.65) 45%, rgba(12, 10, 6, 0.82) 100%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1.5px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 0 25px rgba(212, 175, 55, 0.08);
+    border-radius: 18px;
+}
+
+.tarot-card:hover .tarot-front {
+    border-color: rgba(212, 175, 55, 0.85);
+    box-shadow: 0 30px 65px rgba(0, 0, 0, 0.85), 0 0 35px rgba(212, 175, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .tarot-foil-border {

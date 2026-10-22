@@ -640,9 +640,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2026 ULTRA-LUXURY INTERACTIVE ENGINE (Awwwards / Linear)
     // =========================================================
 
-    // --- A. Precision Top Scroll Progress Bar & Floating Quick Dock ---
+    // --- A. Precision Top Scroll Progress Bar ---
     const scrollProgressBar = document.getElementById('scroll-progress');
-    const quickDock = document.getElementById('quick-dock');
 
     window.addEventListener('scroll', () => {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -651,15 +650,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (scrollProgressBar) {
             scrollProgressBar.style.width = scrollPercent + '%';
-        }
-
-        // Show quick dock after scrolling past hero section (350px)
-        if (quickDock) {
-            if (scrollTop > 350) {
-                quickDock.classList.add('visible');
-            } else {
-                quickDock.classList.remove('visible');
-            }
         }
     }, { passive: true });
 
@@ -761,7 +751,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sortingHatModal = document.getElementById('sorting-hat-modal');
     const sortingHatBtn = document.getElementById('sorting-hat-btn');
     const sortingClose = document.getElementById('sorting-close');
-    const dockSortingBtn = document.getElementById('dock-sorting-btn');
     const hatSpeech = document.getElementById('hat-speech');
     const currentHouseName = document.getElementById('current-house-name');
     const houseBtns = document.querySelectorAll('.house-btn');
@@ -818,7 +807,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (sortingHatBtn) sortingHatBtn.addEventListener('click', openSortingHat);
-    if (dockSortingBtn) dockSortingBtn.addEventListener('click', openSortingHat);
     if (sortingClose) sortingClose.addEventListener('click', closeSortingHat);
     if (sortingHatModal) {
         sortingHatModal.addEventListener('click', (e) => {

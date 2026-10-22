@@ -2439,8 +2439,7 @@ footer {
     transition: all 0.2s ease;
 }
 .close-btn { background: #ff5f56; }
-.close-btn i { opacity: 0.6; transition: opacity 0.2s ease; }
-.close-btn:hover i { opacity: 1; }
+.close-btn .close-x { display: flex; align-items: center; justify-content: center; font-size: 11px; line-height: 1; font-weight: bold; color: rgba(0, 0, 0, 0.75); }
 .min-btn { background: #ffbd2e; }
 .max-btn { background: #27c93f; }
 
@@ -2454,25 +2453,28 @@ footer {
     pointer-events: none;
 }
 .terminal-header-close {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    color: var(--text-secondary);
-    width: 28px;
-    height: 28px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    color: #ffd700;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
     transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 .terminal-header-close:hover {
-    background: rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.25);
     border-color: #ef4444;
     color: #ffffff;
-    transform: rotate(90deg) scale(1.1);
-    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+    transform: rotate(90deg) scale(1.15);
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
 }
 .terminal-body {
     padding: 20px;

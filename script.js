@@ -318,8 +318,17 @@ document.addEventListener('DOMContentLoaded', () => {
             terminalModal.classList.add('active');
             setTimeout(() => terminalInput.focus(), 500);
         });
-        terminalClose.addEventListener('click', () => {
+        const closeTerminal = () => {
             terminalModal.classList.remove('active');
+        };
+        terminalClose.addEventListener('click', closeTerminal);
+        const terminalHeaderClose = document.getElementById('terminal-header-close');
+        if (terminalHeaderClose) terminalHeaderClose.addEventListener('click', closeTerminal);
+        terminalModal.addEventListener('click', (e) => {
+            if (e.target === terminalModal) closeTerminal();
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && terminalModal.classList.contains('active')) closeTerminal();
         });
         
         const commands = {

@@ -58,20 +58,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 4. Reveal on Scroll ---
+    // --- 4. Staggered Cascade Reveal on Scroll (2026 Trend) ---
     const revealElements = document.querySelectorAll('.reveal');
     if (!prefersReducedMotion) {
-        const revealObserver = new IntersectionObserver((entries) => {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            let batchDelay = 0;
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    const el = entry.target;
+                    const parentGrid = el.closest('.hogwarts-letters-grid, .tarot-deck, .skills-grid, .bento-grid');
+                    if (parentGrid) {
+                        el.style.transitionDelay = batchDelay + "ms";
+                        batchDelay += 130;
+                    }
+                    el.classList.add('active');
+                    observer.unobserve(el);
+
+                    setTimeout(() => {
+                        el.style.transitionDelay = '';
+                    }, 1000);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
         revealElements.forEach(el => revealObserver.observe(el));
     } else {
-        // Show all immediately for reduced-motion users.
         revealElements.forEach(el => el.classList.add('active'));
     }
 

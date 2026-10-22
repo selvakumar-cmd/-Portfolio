@@ -2004,16 +2004,18 @@ footer {
     color: var(--text-secondary);
 }
 
-/* Reveal Animations */
+/* Reveal Animations — 2026 Fluid Cascade Stagger */
 .reveal {
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+    transform: translateY(32px) scale(0.97);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

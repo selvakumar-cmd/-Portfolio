@@ -310,23 +310,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const terminalBtn = document.getElementById('terminal-btn');
     const terminalModal = document.getElementById('terminal-modal');
     const terminalClose = document.getElementById('terminal-close');
+    const terminalCornerClose = document.getElementById('terminal-corner-close');
+    const terminalHeaderClose = document.getElementById('terminal-header-close');
     const terminalInput = document.getElementById('terminal-input');
     const terminalOutput = document.getElementById('terminal-output');
 
     if (terminalBtn && terminalModal) {
-        terminalBtn.addEventListener('click', () => {
+        const openTerminal = () => {
             terminalModal.classList.add('active');
-            setTimeout(() => terminalInput.focus(), 500);
-        });
+            terminalBtn.classList.add('active');
+            terminalBtn.innerHTML = '<i class="fas fa-times"></i>';
+            terminalBtn.setAttribute('title', 'Close Terminal');
+            setTimeout(() => { if (terminalInput) terminalInput.focus(); }, 300);
+        };
+
         const closeTerminal = () => {
             terminalModal.classList.remove('active');
+            terminalBtn.classList.remove('active');
+            terminalBtn.innerHTML = '<i class="fas fa-terminal"></i>';
+            terminalBtn.setAttribute('title', 'Terminal Mode');
         };
-        terminalClose.addEventListener('click', closeTerminal);
-        const terminalHeaderClose = document.getElementById('terminal-header-close');
+
+        terminalBtn.addEventListener('click', () => {
+            if (terminalModal.classList.contains('active')) {
+                closeTerminal();
+            } else {
+                openTerminal();
+            }
+        });
+
+        if (terminalClose) terminalClose.addEventListener('click', closeTerminal);
+        if (terminalCornerClose) terminalCornerClose.addEventListener('click', closeTerminal);
         if (terminalHeaderClose) terminalHeaderClose.addEventListener('click', closeTerminal);
+
         terminalModal.addEventListener('click', (e) => {
             if (e.target === terminalModal) closeTerminal();
         });
+
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && terminalModal.classList.contains('active')) closeTerminal();
         });

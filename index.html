@@ -289,14 +289,6 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-extra">
-                <div id="timezone-badge" class="timezone-badge">
-                    <span class="pulse-dot"></span>
-                    <span id="live-time">IST Loading...</span>
-                </div>
-                <button id="sorting-hat-btn" class="sorting-hat-btn" aria-label="Sorting Hat Ceremony" title="Hogwarts Sorting Hat Ceremony">
-                    <i class="fas fa-hat-wizard"></i>
-                    <span class="hat-btn-text">House</span>
-                </button>
                 <button id="terminal-btn" class="terminal-toggle-btn" aria-label="Terminal Mode">
                     <i class="fas fa-terminal"></i>
                 </button>
@@ -1187,38 +1179,6 @@
             <p>&copy; 2026 Selvakumar S (The One Selva Harrington). All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- Hogwarts Sorting Hat Modal -->
-    <div id="sorting-hat-modal" class="sorting-hat-modal">
-        <div class="sorting-hat-card">
-            <button class="sorting-close" id="sorting-close" aria-label="Close Sorting Hat">&times;</button>
-            <div class="hat-avatar-wrap">
-                <span class="hat-icon"><i class="fas fa-hat-wizard" style="color: #ffd700;"></i></span>
-                <div class="hat-magic-glow"></div>
-            </div>
-            <h3 class="hat-title">The Sorting Hat Ceremony</h3>
-            <p class="hat-speech" id="hat-speech">"Step forth! Let me inspect your code and ambition to reveal your true Hogwarts House..."</p>
-            <div class="house-selector-grid">
-                <button type="button" class="house-btn gryffindor" data-house="gryffindor">
-                    <span class="house-badge"><i class="fas fa-shield-cat" style="color: #f59e0b;"></i> Gryffindor</span>
-                    <span class="house-trait">Courage & Bold Architectures</span>
-                </button>
-                <button type="button" class="house-btn ravenclaw" data-house="ravenclaw">
-                    <span class="house-badge"><i class="fas fa-feather" style="color: #38bdf8;"></i> Ravenclaw</span>
-                    <span class="house-trait">Wisdom, Clean Code & Wit</span>
-                </button>
-                <button type="button" class="house-btn slytherin" data-house="slytherin">
-                    <span class="house-badge"><i class="fas fa-staff-snake" style="color: #10b981;"></i> Slytherin</span>
-                    <span class="house-trait">Ambition & High-Scale Systems</span>
-                </button>
-                <button type="button" class="house-btn hufflepuff" data-house="hufflepuff">
-                    <span class="house-badge"><i class="fas fa-shield-heart" style="color: #eab308;"></i> Hufflepuff</span>
-                    <span class="house-trait">Loyalty, Precision & Resilience</span>
-                </button>
-            </div>
-            <div class="house-active-banner">Current Realm: <strong id="current-house-name">Gryffindor Gold</strong></div>
-        </div>
-    </div>
 
     <!-- Terminal Mode Modal -->
     <div id="terminal-modal" class="terminal-modal">

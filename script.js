@@ -129,18 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
         icon.classList.replace('fa-moon', 'fa-sun');
         startLight = true;
     }
-
-    // --- Live Timezone Badge ---
-    function updateLiveTime() {
-        const timeElement = document.getElementById('live-time');
-        if (timeElement) {
-            const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            const timeString = new Intl.DateTimeFormat('en-US', options).format(new Date());
-            timeElement.textContent = `IST ${timeString}`;
-        }
-    }
-    updateLiveTime();
-    setInterval(updateLiveTime, 1000);
     // --- 7. Mobile Menu (Simple implementation) ---
     const menuBtn = document.querySelector('.menu-btn');
     const navLinksList = document.querySelector('.nav-links');
@@ -746,121 +734,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================
     // 🧙‍♂️ HOGWARTS MAGICAL SYSTEM — Pure Harry Potter Vibe
     // =========================================================
-
-    // --- E. Sorting Hat Ceremony & Hogwarts House Theme Switcher ---
-    const sortingHatModal = document.getElementById('sorting-hat-modal');
-    const sortingHatBtn = document.getElementById('sorting-hat-btn');
-    const sortingClose = document.getElementById('sorting-close');
-    const hatSpeech = document.getElementById('hat-speech');
-    const currentHouseName = document.getElementById('current-house-name');
-    const houseBtns = document.querySelectorAll('.house-btn');
-
-    const houseData = {
-        gryffindor: {
-            name: 'Gryffindor Gold & Crimson',
-            class: 'house-gryffindor',
-            speech: '"Ah... I sense great courage here! Daring, nerve, and chivalry — the builder who ships bold architectures and never backs down from a deadline. GRYFFINDOR! ⚡🦁"',
-            toast: '🦁 Welcome, Gryffindor! Courage & Bold Code guide you.'
-        },
-        ravenclaw: {
-            name: 'Ravenclaw Sapphire & Bronze',
-            class: 'house-ravenclaw',
-            speech: '"Excellent... a keen and curious mind! You value clean architecture, elegant solutions, and elegant API design above all. RAVENCLAW! 🦅✨"',
-            toast: '🦅 Welcome, Ravenclaw! Wit & Wisdom illuminate your code.'
-        },
-        slytherin: {
-            name: 'Slytherin Emerald & Silver',
-            class: 'house-slytherin',
-            speech: '"Cunning resourcefulness! You build systems that scale to millions, optimise every query, and always find the most efficient path. SLYTHERIN! 🐍💚"',
-            toast: '🐍 Welcome, Slytherin! Ambition & Cunning drive your systems.'
-        },
-        hufflepuff: {
-            name: 'Hufflepuff Gold & Black',
-            class: 'house-hufflepuff',
-            speech: '"Steadfast and loyal! Patient, fair, and dedicated — you deliver consistent, resilient code and never leave a teammate behind. HUFFLEPUFF! 🦡🌟"',
-            toast: '🦡 Welcome, Hufflepuff! Loyalty & Hard Work define your craft.'
-        }
-    };
-
-    const houseClasses = ['house-gryffindor', 'house-ravenclaw', 'house-slytherin', 'house-hufflepuff'];
-    let savedHouse = localStorage.getItem('hogwarts-house') || null;
-
-    function openSortingHat() {
-        if (!sortingHatModal) return;
-        sortingHatModal.classList.add('active');
-        if (hatSpeech) hatSpeech.textContent = '"Step forth! Let me inspect your code and ambition to reveal your true Hogwarts House..."';
-        // Restore saved selection
-        houseBtns.forEach(btn => {
-            btn.classList.remove('active');
-            if (savedHouse && btn.dataset.house === savedHouse) btn.classList.add('active');
-        });
-        if (savedHouse && houseData[savedHouse]) {
-            if (currentHouseName) currentHouseName.textContent = houseData[savedHouse].name;
-        }
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeSortingHat() {
-        if (!sortingHatModal) return;
-        sortingHatModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    if (sortingHatBtn) sortingHatBtn.addEventListener('click', openSortingHat);
-    if (sortingClose) sortingClose.addEventListener('click', closeSortingHat);
-    if (sortingHatModal) {
-        sortingHatModal.addEventListener('click', (e) => {
-            if (e.target === sortingHatModal) closeSortingHat();
-        });
-    }
-
-    houseBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const house = btn.dataset.house;
-            const data = houseData[house];
-            if (!data) return;
-
-            // Remove all previous house classes
-            houseClasses.forEach(c => document.body.classList.remove(c));
-            document.body.classList.add(data.class);
-            localStorage.setItem('hogwarts-house', house);
-            savedHouse = house;
-
-            // Animate hat speech
-            if (hatSpeech) {
-                hatSpeech.style.opacity = '0';
-                setTimeout(() => {
-                    hatSpeech.textContent = data.speech;
-                    hatSpeech.style.transition = 'opacity 0.5s ease';
-                    hatSpeech.style.opacity = '1';
-                }, 200);
-            }
-
-            // Update active state
-            houseBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Update display name
-            if (currentHouseName) currentHouseName.textContent = data.name;
-
-            // Fire spell burst from button
-            const rect = btn.getBoundingClientRect();
-            fireWandBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, '#d4af37');
-
-            // Close after 2.4s
-            setTimeout(closeSortingHat, 2400);
-
-            // Show glass toast
-            showGlassToast(data.toast.substring(0, 30), data.toast.substring(30));
-        });
-    });
-
-    // Restore house on page load
-    if (savedHouse && houseData[savedHouse]) {
-        houseClasses.forEach(c => document.body.classList.remove(c));
-        document.body.classList.add(houseData[savedHouse].class);
-        if (currentHouseName) currentHouseName.textContent = houseData[savedHouse].name;
-    }
+    // Clean up any previously saved house theme
+    try {
+        localStorage.removeItem('hogwarts-house');
+        ['house-gryffindor', 'house-ravenclaw', 'house-slytherin', 'house-hufflepuff'].forEach(c => document.body.classList.remove(c));
+    } catch (e) {}
 
     // --- F. Wand Click Spell Burst (click anywhere) ---
     const spellColors = ['#ffd700', '#38bdf8', '#a78bfa', '#f472b6', '#34d399'];

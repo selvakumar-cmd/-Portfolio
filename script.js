@@ -47,17 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // --- 3. Navbar Scroll Effect ---
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    });
-
-
     // --- 4. Staggered Cascade Reveal on Scroll (2026 Trend) ---
     const revealElements = document.querySelectorAll('.reveal');
     if (!prefersReducedMotion) {
@@ -87,65 +76,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- 5. Active Link Tracking ---
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= (sectionTop - 200)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-
-
-    // --- 6. Theme Toggle ---
+    // --- 6. Theme Engine & Synced Controls ---
     const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const icon = themeToggle.querySelector('i');
-    let startLight = false;
+    const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
+    let currentIsLight = localStorage.getItem('theme') === 'light';
 
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-        const isLight = body.classList.contains('light-mode');
+    function setTheme(isLight) {
+        currentIsLight = isLight;
         if (isLight) {
-            icon.classList.replace('fa-moon', 'fa-sun');
+            document.body.classList.add('light-mode');
+            document.body.classList.remove('dark-mode');
+            if (themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
             localStorage.setItem('theme', 'light');
         } else {
-            icon.classList.replace('fa-sun', 'fa-moon');
+            document.body.classList.remove('light-mode');
+            document.body.classList.add('dark-mode');
+            if (themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
             localStorage.setItem('theme', 'dark');
         }
-        
-        // Re-initialize particles with theme colors
-        if (typeof initParticles === 'function') {
-            initParticles(isLight);
-        }
-    });
-
-    // Load saved theme
-    if (localStorage.getItem('theme') === 'light') {
-        body.classList.add('light-mode');
-        icon.classList.replace('fa-moon', 'fa-sun');
-        startLight = true;
+        if (typeof initParticles === 'function') initParticles(isLight);
     }
-    // --- 7. Mobile Menu (Simple implementation) ---
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            setTheme(!document.body.classList.contains('light-mode'));
+        });
+    }
+
+    if (currentIsLight) {
+        document.body.classList.add('light-mode');
+        if (themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    // --- 7. Mobile Menu Interactive Drawer ---
     const menuBtn = document.querySelector('.menu-btn');
     const navLinksList = document.querySelector('.nav-links');
-    
-    // For a more advanced menu, we'd add logic here to toggle visibility on mobile.
-    // For now, it's a placeholder for future enhancement.
+
+    if (menuBtn && navLinksList) {
+        const toggleMenu = () => {
+            menuBtn.classList.toggle('open');
+            navLinksList.classList.toggle('open');
+        };
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        navLinksList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('open');
+                navLinksList.classList.remove('open');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinksList.contains(e.target) && !menuBtn.contains(e.target)) {
+                menuBtn.classList.remove('open');
+                navLinksList.classList.remove('open');
+            }
+        });
+    }
 
 
     // --- 8. Contact Form Handling (Netlify Forms Integration) ---
@@ -259,17 +250,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 10. Particles.js ---
     function initParticles(isLight) {
         if (!prefersReducedMotion && window.particlesJS) {
-            // Light mode: darker bronze/gold so particles are visible on cream bg
-            // Dark mode: bright gold so particles glow on black bg
-            const pColor  = isLight ? ["#7a5c10", "#b8860b", "#5a4008"] : ["#d4af37", "#b8860b", "#f0d060"];
-            const lColor  = isLight ? "#7a5c10" : "#d4af37";
+            const isMobileDevice = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+            const particleCount = isMobileDevice ? 35 : 75;
+            const pColor = isLight ? ["#7a5c10", "#b8860b", "#5a4008"] : ["#d4af37", "#b8860b", "#f0d060"];
+            const lColor = isLight ? "#7a5c10" : "#d4af37";
             const pOpacity = isLight ? 0.75 : 0.6;
             const lOpacity = isLight ? 0.35 : 0.2;
-            const speed    = isLight ? 1.5  : 2;
+            const speed = isLight ? 1.5 : 2;
 
             particlesJS('particles-js', {
                 "particles": {
-                    "number": { "value": 90, "density": { "enable": true, "value_area": 800 } },
+                    "number": { "value": particleCount, "density": { "enable": true, "value_area": 800 } },
                     "color": { "value": pColor },
                     "shape": { "type": "circle" },
                     "opacity": { "value": pOpacity, "random": true },
@@ -392,15 +383,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.click();
                     document.body.removeChild(link);
                 } else if (cmd === 'lumos') {
-                    document.body.classList.remove('dark-mode');
-                    document.body.classList.add('light-mode');
-                    localStorage.setItem('theme', 'light');
-                    if (typeof initParticles === 'function') initParticles(true);
+                    setTheme(true);
                 } else if (cmd === 'nox') {
-                    document.body.classList.remove('light-mode');
-                    document.body.classList.add('dark-mode');
-                    localStorage.setItem('theme', 'dark');
-                    if (typeof initParticles === 'function') initParticles(false);
+                    setTheme(false);
                 }
 
                 const responseLine = document.createElement('p');
@@ -586,17 +571,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'lumos':
                 response.textContent = "✨ Lumos Maxima! Illuminating the realm...";
-                document.body.classList.remove('dark-mode');
-                document.body.classList.add('light-mode');
-                localStorage.setItem('theme', 'light');
-                if (typeof initParticles === 'function') initParticles(true);
+                setTheme(true);
                 break;
             case 'nox':
                 response.textContent = "🌑 Nox! Casting shadows across the realm...";
-                document.body.classList.remove('light-mode');
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark');
-                if (typeof initParticles === 'function') initParticles(false);
+                setTheme(false);
                 break;
             case 'alohomora':
                 response.textContent = '🗝️ Alohomora! "Any sufficiently advanced technology is indistinguishable from magic." — Selva Harrington';
@@ -668,20 +647,68 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2026 ULTRA-LUXURY INTERACTIVE ENGINE (Awwwards / Linear)
     // =========================================================
 
-    // --- A. Precision Top Scroll Progress Bar ---
+    // --- A. Unified Ultra-Smooth 60/120 FPS Scroll Controller ---
+    const nav = document.getElementById('main-nav');
     const scrollProgressBar = document.getElementById('scroll-progress');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-    window.addEventListener('scroll', () => {
+    // Cache section positions to avoid layout thrashing during scroll
+    let sectionOffsets = [];
+    function cacheSectionOffsets() {
+        sectionOffsets = Array.from(sections).map(sec => ({
+            id: sec.id,
+            top: sec.offsetTop
+        }));
+    }
+    cacheSectionOffsets();
+    window.addEventListener('resize', cacheSectionOffsets, { passive: true });
+
+    let isScrollTicking = false;
+    function onScrollUpdate() {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = (scrollHeight > 0) ? (scrollTop / scrollHeight) * 100 : 0;
 
+        // 1. Navbar scrolled class
+        if (nav) {
+            if (scrollTop > 50) {
+                if (!nav.classList.contains('scrolled')) nav.classList.add('scrolled');
+            } else {
+                if (nav.classList.contains('scrolled')) nav.classList.remove('scrolled');
+            }
+        }
+
+        // 2. Active nav link tracking using cached offsets (zero forced reflow!)
+        let current = '';
+        for (let i = sectionOffsets.length - 1; i >= 0; i--) {
+            if (scrollTop >= (sectionOffsets[i].top - 220)) {
+                current = sectionOffsets[i].id;
+                break;
+            }
+        }
+        if (current) {
+            navLinks.forEach(link => {
+                const isActive = link.getAttribute('href') === `#${current}`;
+                if (isActive && !link.classList.contains('active')) link.classList.add('active');
+                else if (!isActive && link.classList.contains('active')) link.classList.remove('active');
+            });
+        }
+
+        // 3. Top scroll progress bar
         if (scrollProgressBar) {
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
             scrollProgressBar.style.width = scrollPercent + '%';
         }
-    }, { passive: true });
 
-    // --- B. Interactive Spotlight Glow Cursor Tracker (Bento & Cards) ---
+        isScrollTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!isScrollTicking) {
+            requestAnimationFrame(onScrollUpdate);
+            isScrollTicking = true;
+        }
+    }, { passive: true });// --- B. Interactive Spotlight Glow Cursor Tracker (Bento & Cards) ---
     const spotlightCards = document.querySelectorAll('.bento-item, .project-card, .highlight-item, .skill-category');
     spotlightCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -882,15 +909,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let time = 0;
 
         function getHouseAuroraColors() {
-            if (document.body.classList.contains('house-gryffindor')) {
-                return ['rgba(220, 38, 38, 0.25)', 'rgba(212, 175, 55, 0.35)', 'rgba(245, 158, 11, 0.2)'];
-            } else if (document.body.classList.contains('house-ravenclaw')) {
-                return ['rgba(37, 99, 235, 0.25)', 'rgba(56, 189, 248, 0.35)', 'rgba(99, 102, 241, 0.2)'];
-            } else if (document.body.classList.contains('house-slytherin')) {
-                return ['rgba(5, 150, 105, 0.25)', 'rgba(52, 211, 153, 0.35)', 'rgba(16, 185, 129, 0.2)'];
-            } else if (document.body.classList.contains('house-hufflepuff')) {
-                return ['rgba(217, 119, 6, 0.25)', 'rgba(250, 204, 21, 0.35)', 'rgba(234, 179, 8, 0.2)'];
-            }
             return ['rgba(212, 175, 55, 0.25)', 'rgba(56, 189, 248, 0.2)', 'rgba(255, 215, 0, 0.3)'];
         }
 

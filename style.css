@@ -369,10 +369,6 @@ body.light-mode #theme-toggle {
     color: #475569;
 }
 
-body.light-mode #terminal-btn {
-    color: #475569;
-    border-color: rgba(15, 23, 42, 0.1);
-}
 
 /* Light Mode — Menu burger */
 body.light-mode .menu-btn__burger,
@@ -2187,15 +2183,10 @@ footer {
     .nav-extra {
         gap: 8px;
     }
-    #terminal-btn, #theme-toggle {
+    #theme-toggle {
         font-size: 1rem;
     }
-    .terminal-toggle-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 0.95rem;
-    }
-    .menu-btn {
+        .menu-btn {
         margin-left: 8px;
     }
     /* Disable hover transforms on touch */
@@ -2391,65 +2382,6 @@ footer {
 
 /* Ultra-Premium Features */
 /* 1. Terminal Mode */
-.terminal-toggle-btn {
-    background: transparent;
-    border: 1px solid var(--glass-border);
-    color: var(--accent-primary);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.terminal-toggle-btn:hover {
-    background: rgba(99, 102, 241, 0.2);
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-}
-.terminal-toggle-btn.active {
-    background: rgba(239, 68, 68, 0.25) !important;
-    border-color: #ef4444 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 18px rgba(239, 68, 68, 0.5) !important;
-}
-
-.terminal-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: var(--transition);
-}
-.terminal-modal.active {
-    opacity: 1;
-    pointer-events: all;
-}
-.terminal-window {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    background: #1e1e1e;
-    border-radius: 12px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.15);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    font-family: 'Courier New', Courier, monospace;
-    transform: translateY(50px);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.terminal-modal.active .terminal-window {
-    transform: translateY(0);
-}
 .terminal-header {
     background: rgba(24, 20, 30, 0.85);
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -2489,58 +2421,6 @@ footer {
     font-family: var(--font-mono, monospace);
     margin: 0;
     pointer-events: none;
-}
-.terminal-header-close {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.45);
-    color: #ffd700;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 700;
-    line-height: 1;
-    transition: all 0.25s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-.terminal-header-close:hover {
-    background: rgba(239, 68, 68, 0.25);
-    border-color: #ef4444;
-    color: #ffffff;
-    transform: rotate(90deg) scale(1.15);
-    box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
-}
-.terminal-corner-close {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    z-index: 20;
-    background: rgba(30, 20, 15, 0.9);
-    border: 1.5px solid rgba(212, 175, 55, 0.7);
-    color: #ffd700;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.45rem;
-    font-weight: 700;
-    line-height: 1;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(212, 175, 55, 0.3);
-}
-.terminal-corner-close:hover {
-    background: #ef4444;
-    border-color: #ffffff;
-    color: #ffffff;
-    transform: rotate(90deg) scale(1.15);
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
 }
 .terminal-body {
     padding: 20px;

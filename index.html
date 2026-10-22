@@ -289,9 +289,6 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-extra">
-                <button id="terminal-btn" class="terminal-toggle-btn" aria-label="Terminal Mode">
-                    <i class="fas fa-terminal"></i>
-                </button>
                 <button id="theme-toggle" aria-label="Toggle Theme">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -1179,30 +1176,6 @@
             <p>&copy; 2026 Selvakumar S (The One Selva Harrington). All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- Terminal Mode Modal -->
-    <div id="terminal-modal" class="terminal-modal">
-        <div class="terminal-window">
-            <button type="button" class="terminal-corner-close" id="terminal-corner-close" aria-label="Close Terminal" title="Close Terminal (Esc)">&times;</button>
-            <div class="terminal-header">
-                <div class="terminal-buttons">
-                    <span class="close-btn" id="terminal-close" title="Close"><span class="close-x">&times;</span></span>
-                    <span class="min-btn"></span>
-                    <span class="max-btn"></span>
-                </div>
-                <div class="terminal-title">selvakumar@portfolio: ~</div>
-                <button type="button" class="terminal-header-close" id="terminal-header-close" aria-label="Close Terminal" title="Close (Esc)">&times;</button>
-            </div>
-            <div class="terminal-body" id="terminal-output">
-                <p>Welcome to Selvakumar's Portfolio Terminal.</p>
-                <p>Type <span class="cmd-highlight">help</span> to see available commands or <span class="cmd-highlight">spells</span> for Hogwarts magic.</p>
-            </div>
-            <div class="terminal-input-line">
-                <span class="prompt">selvakumar@portfolio:~$</span>
-                <input type="text" id="terminal-input" autocomplete="off">
-            </div>
-        </div>
-    </div>
 
     <!-- Interactive Glass Toast Notification -->
     <div id="toast-notify" class="toast-notify">

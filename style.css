@@ -3734,12 +3734,10 @@ body.house-hufflepuff .tarot-archetype-tag { border-color: rgba(234, 179, 8, 0.5
     .hogwarts-castle-bg-img {
         object-position: 45% center;
     }
-    .candle-1 { top: 6%; left: 4%; height: 38px; }
-    .candle-2 { display: none; }
-    .candle-3 { top: 8%; right: 5%; height: 40px; }
-    .candle-4 { display: none; }
-    .candle-5 { top: 65%; left: 4%; height: 35px; }
-    .candle-6 { top: 68%; right: 4%; height: 38px; }
+    /* Hide floating candles on mobile & tablet to prevent clipping and clutter */
+    .floating-candles-layer {
+        display: none !important;
+    }
 
     /* Tarot Cards Deck on Mobile */
     .tarot-deck {

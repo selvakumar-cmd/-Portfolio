@@ -504,18 +504,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Trigger on scroll using IntersectionObserver
+    // Trigger immediately on mobile or via low-threshold observer
     const profSection = document.querySelector('.proficiency-bars');
     if (profSection) {
-        const profObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateProfBars();
-                    profObserver.disconnect();
-                }
-            });
-        }, { threshold: 0.3 });
-        profObserver.observe(profSection);
+        const isMobileScreen = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+        if (isMobileScreen) {
+            animateProfBars();
+        } else {
+            const profObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateProfBars();
+                        profObserver.disconnect();
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: '50px 0px' });
+            profObserver.observe(profSection);
+        }
     }
 
     // --- 16. GitHub Mini Stats via API ---

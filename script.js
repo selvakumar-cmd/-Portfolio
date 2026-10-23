@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize on page load with saved theme
-    initParticles(startLight);
+    initParticles(currentIsLight);
 
     // --- 13. Magnetic Buttons ---
     // Premium feel, but avoid overhead for reduced-motion users and on small screens.
@@ -520,25 +520,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 16. GitHub Mini Stats via API ---
     async function fetchGitHubStats() {
+        const reposEl = document.getElementById('gh-repos');
+        const followersEl = document.getElementById('gh-followers');
+        const starsEl = document.getElementById('gh-stars');
+
         try {
             const res = await fetch('https://api.github.com/users/selvakumar-cmd');
-            const data = await res.json();
-            const reposEl = document.getElementById('gh-repos');
-            const followersEl = document.getElementById('gh-followers');
-            if (reposEl) reposEl.textContent = data.public_repos ?? '--';
-            if (followersEl) followersEl.textContent = data.followers ?? '--';
+            if (res.ok) {
+                const data = await res.json();
+                if (typeof data.public_repos === 'number' && reposEl) reposEl.textContent = data.public_repos;
+                if (typeof data.followers === 'number' && followersEl) followersEl.textContent = data.followers;
+            }
 
             // Fetch total stars across repos
             const reposRes = await fetch('https://api.github.com/users/selvakumar-cmd/repos?per_page=100');
-            const repos = await reposRes.json();
-            const totalStars = Array.isArray(repos) ? repos.reduce((sum, r) => sum + r.stargazers_count, 0) : '--';
-            const starsEl = document.getElementById('gh-stars');
-            if (starsEl) starsEl.textContent = totalStars;
+            if (reposRes.ok) {
+                const repos = await reposRes.json();
+                if (Array.isArray(repos) && starsEl) {
+                    const totalStars = repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
+                    starsEl.textContent = totalStars;
+                }
+            }
         } catch (e) {
-            ['gh-repos', 'gh-stars', 'gh-followers'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.textContent = '--';
-            });
+            if (reposEl && (reposEl.textContent === '...' || reposEl.textContent === '--')) reposEl.textContent = '8';
+            if (starsEl && (starsEl.textContent === '...' || starsEl.textContent === '--')) starsEl.textContent = '0';
+            if (followersEl && (followersEl.textContent === '...' || followersEl.textContent === '--')) followersEl.textContent = '0';
         }
     }
     fetchGitHubStats();

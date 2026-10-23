@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://selvakumar-cmd.github.io/-Portfolio/sitemap.xml
+Sitemap: https://selvakumar-cmd.github.io/sitemap.xml
